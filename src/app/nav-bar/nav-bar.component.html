@@ -1,0 +1,38 @@
+<div [ngClass]="{'nav-icon-custom': !isOpen, 'change': isOpen}">
+    <div class="bar1"></div>
+    <div class="bar2"></div>
+    <div class="bar3"></div>
+</div>
+
+<div id="navBar" class="nav-menu-custom d-flex flex-column h-100">
+    <div class="menu-header text-center">
+        <h1 class="h1 p-2">Marble</h1>
+    </div>
+    <div class="menu-content" (click)="scrollTo($event)">
+        <ul class="nav">
+            <li class="nav-item">
+                <a data="home" [ngClass]="{'active': currentSection === 'home'}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a data="image" [ngClass]="{'active': currentSection === 'image'}">Images</a>
+            </li>
+            <li class="nav-item">
+                <a data="album" [ngClass]="{'active': currentSection === 'album'}">Album</a>
+            </li>
+            <li class="nav-item">
+                <a data="contact" [ngClass]="{'active': currentSection === 'contact'}">Contact</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="menu-footer">
+        <p class="p">
+            <small> &copy; 2016 All Rights Reserved.</small>
+            <br>
+            <small>Designed by
+                <a href="http://asquare.cf" target="_blank">asquare.cf</a>
+            </small>
+        </p>
+    </div>
+
+</div>

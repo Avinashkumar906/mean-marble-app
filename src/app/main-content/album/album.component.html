@@ -1,0 +1,42 @@
+<div class="container-fluid">
+  <div class="row align-items-center heading">
+    <div class="col p-0">
+      <h1 class="h1" data-aos="fade-left">
+        Recent <br/>&nbsp;&nbsp;Albums.
+      </h1>
+    </div>
+  </div>
+  <div class="row m-0 bg-custom">
+    <div class="w-100">
+      <owl-carousel [options]="owlOption" [items]="albums" [carouselClasses]="['owl-theme','p-4','sliding']">
+        <div class="w-100" *ngFor="let item of albums;let i = index" data-aos="fade-in">
+          <div class="card">
+            <div class="wrapper"  [style.background-image]="'url(' + item.url + ')'">
+              <div class="date">
+                <span class="day">{{item.day}}</span>
+                <span class="month">{{getSubstring(item.month)}}</span>
+                <span class="year">{{item.year}}</span>
+              </div>
+              <div class="data">
+                <div class="content-custom">
+                  <h1 class="title">{{item.title}}</h1>
+                  <p class="text">{{item.description}}</p>
+                  <p class="author text-right text-muted">By - {{item.author}}</p>
+                  <p class="author text-center text-muted" (click)="openLightbox(i)" style="cursor:pointer"><em>View Album</em></p>
+                  <label for="show-menu" class="menu-button">
+                      <span></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </owl-carousel>
+    </div>
+    <div class="w-100">
+      <div class="m-2 text-center">
+        <button class="btn btn-light" (click)="openUploadAlbum($event)">upload</button>
+      </div>
+    </div>
+  </div>
+</div>

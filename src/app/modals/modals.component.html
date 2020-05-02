@@ -1,0 +1,73 @@
+<ngx-smart-modal #upload [closable]="true" (onClose)="upload.removeData()" identifier="upload">
+	<div class="testbox">
+		<form [formGroup]="imageForm" (ngSubmit)="submit()">
+			<div class="banner" (click)="openUploader($event)">
+				<img *ngIf="preview" [src]="preview"/>
+			</div>
+			<input type="file" id="file" (change)="handleFileInput($event)" hidden />
+			<div class="item">
+				<p>Title</p>
+				<div class="name-item">
+					<input type="text"  formControlName="title" placeholder="Title" />
+				</div>
+			</div>
+      <div class="item">
+				<p>Author</p>
+				<div class="name-item">
+					<input type="text"  formControlName="author" placeholder="Author" />
+				</div>
+			</div>
+			<div class="item">
+				<p>Place</p>
+				<div class="name-item">
+					<input type="text"  formControlName="place" placeholder="Place" />
+				</div>
+			</div>
+			<div class="item">
+				<p>Tags</p>
+				<div class="name-item">
+					<input type="text"  formControlName="tags" placeholder="Tags" />
+				</div>
+			</div>
+      <div class="item">
+				<p>Gdrive</p>
+				<div class="name-item">
+					<input type="text"  formControlName="more" placeholder="Gdrive (Optional)" />
+				</div>
+			</div>
+      <div class="item" *ngIf="upload.hasData()">
+        <p>Images</p>
+        <input type="file" id="multifile" (change)="handleMultiFileInput($event)" hidden multiple />
+        <div class="multifile" (click)="openMultiUploader($event)"> click to Upload </div>
+				<div class="name-item mt-1">
+            <img *ngFor="let item of urls" [src]="item.url" alt="item.alt" width="80" height="60">
+				</div>
+			</div>
+			<div class="item">
+				<p>Description</p>
+				<textarea rows="3"  formControlName="description" ></textarea>
+			</div>
+		 <div class="btn-block">
+			<button class="m-1 btn-small" type="submit">Submit</button>
+		</div>
+	</form>
+	</div>
+</ngx-smart-modal>
+<ngx-smart-modal #login [closable]="false" identifier="login">
+  <form>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1">
+    </div>
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</ngx-smart-modal>

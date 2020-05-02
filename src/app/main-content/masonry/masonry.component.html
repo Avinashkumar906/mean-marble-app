@@ -1,0 +1,63 @@
+<div #masonry class="container-fluid">
+  <div class="row align-items-center heading">
+    <div class="col p-0">
+      <h1 class="h1" data-aos="fade-left">
+          Recent <br/>&nbsp;&nbsp;Pictures.
+      </h1>
+    </div>
+  </div>
+  <div class="row m-0 bg-custom">
+    <div class="w-100">
+      <div class="card-columns px-4" >
+          <div class="custom-card card" *ngFor="let image of paginationItems;let i = index" data-aos="fade-in">
+              <div class="wrapper">
+                  <img (click)="openLightbox(i)" class="img-fluid" [src]="image.url" [alt]="image.alt">
+                  <div class="header">
+                      <div class="date">
+                            <p class="p">{{ image.day }} <sup>Th</sup> {{ image.month + ', ' + image.year }}</p>
+                      </div>
+                      <div class="edit" *ngIf="isLogged()" (click)="delete(image._id)">
+                            <p class="p">Delete?</p>
+                      </div>
+                  </div>
+                  <div class="data">
+                      <div class="content-custom">
+                          <p class="author">By {{ image.author }} </p>
+                          <h1 class="title">
+                              {{image.title}}
+                          </h1>
+                          <p class="text">{{image.description}}</p>
+                          <a href="{{image.more}}" class="button">watch more</a>
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+    <div class="w-100">
+      <div class="m-2 text-center">
+        <span class="btn btn-light" *ngIf="isLogged()" (click)="openUpload($event)">upload</span>
+      </div>
+      <nav aria-label="" class="text-dark my-2">
+          <ul class="pagination justify-content-center">
+              <li class="page-item">
+                  <a class="page-link bg-light" (click)="firstPage(masonry)">&lt;&lt;</a>
+              </li>
+              <li class="page-item">
+                  <a class="page-link bg-light" (click)="prevPage(masonry)">&lt;</a>
+              </li>
+              <li class="page-item">
+                  <a class="page-link bg-light">{{currentpage + 1}}</a>
+              </li>
+              <li class="page-item">
+                  <a class="page-link bg-light" (click)="nextPage(masonry)">&gt;</a>
+              </li>
+              <li class="page-item">
+                  <a class="page-link bg-light" (click)="lastPage(masonry)">&gt;&gt;</a>
+              </li>
+          </ul>
+      </nav>
+    </div>
+  </div>
+</div>

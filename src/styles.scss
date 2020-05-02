@@ -1,0 +1,66 @@
+/* You can add global styles to this file, and also import other style files */
+// @import url('https://fonts.googleapis.com/css?family=Calistoga|Odibee+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Cute+Font|Gelasio|Righteous&display=swap');
+@import "~owl.carousel/dist/assets/owl.carousel.css";
+@import "~owl.carousel/dist/assets/owl.theme.default.css";
+@import "~ngx-smart-modal/ngx-smart-modal";
+@import "app/app.component";
+
+// font-family: 'Abril Fatface', cursive;
+// font-family: 'Righteous', cursive;
+// font-family: 'Cute Font', cursive;
+// font-family: 'Gelasio', serif;
+
+a {
+  text-decoration: none!important;
+}
+
+html,body{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Gelasio', serif;
+}
+.nsm-content{
+  padding: 0;
+}
+.nsm-body{
+  padding: 0;
+}
+.bg-custom{
+    background-color: rgba(211, 211, 211, 0.5);
+}
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Abril Fatface',sans-serif;
+}
+a{
+  cursor: pointer;
+}
+.owl-theme .owl-nav {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    margin: 0;
+    font-size: 40px;
+  color: #454c49b5;
+}
+.owl-theme .owl-nav .owl-prev,
+.owl-theme .owl-nav .owl-next
+  {
+    height: 80px;
+    width: 80px;
+    border-radius: 40px;
+    &:hover {
+      color: #FFF;
+      text-decoration: none;
+      background: #454c49b5;
+    }
+}
+.shadow-dark{
+  box-shadow: 0 5px 30px 10px rgba(0, 0, 0, 0.3);
+}
+

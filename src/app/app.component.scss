@@ -1,0 +1,49 @@
+.main-container{
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+    .side-nav{
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 400px;
+        margin-left: -400px;
+        z-index: 10;
+        overflow: hidden;
+        box-sizing: border-box;
+        height: 100vh;
+        transition: 0.5s;
+        background-color: #e9e9e9;
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, .2)
+    }
+    .content{
+        box-sizing: border-box;
+        transition: 0.5s;
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+// @media (min-width: 768px) and (max-width: 1023px) {
+//     .side-nav{
+//         width: 30%!important;
+//     }
+//     .content{
+//         margin-left: 30%!important;
+//         width: 70%!important;
+//     }
+// }
+
+// @media (min-width: 1024px) {
+//     .side-nav{
+//         width: 25%!important;
+//     }
+//     .content{
+//         margin-left: 25%!important;
+//         width: 75%!important;
+//     }
+// }
+

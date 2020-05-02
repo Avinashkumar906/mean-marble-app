@@ -1,0 +1,83 @@
+h1 {
+  font-family: 'Righteous';
+  font-weight: 500;
+}
+.container-fluid{
+  padding: 4rem 0 0 0;
+  background-color: rgba(211, 211, 211, 0.5);
+  .heading{
+    color: rgba(0, 0, 0, 0.65);
+    margin: 0 0 2rem 2rem;
+    h1 {
+      font-family: 'Righteous';
+      font-weight: 500;
+    }
+  }
+  .footer{
+    .footer-div{
+      margin: 0 auto;
+      margin-bottom: 2rem;
+      max-width: 400px;
+      img{
+        width: 100%;
+        overflow: hidden;
+        height: 200px;
+        padding: 20px 0;
+      }
+      h4{
+        font-family: 'Gelasio', serif;
+        letter-spacing: 3px;
+        color: black;
+        span{
+          color: rgba(0, 0, 0, 0.8);
+        }
+      }
+      .social{
+        .ul{
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+          li{
+            display: inline-block;
+            width: 100%;
+            .icon{
+              display: inline-block;
+              font-size: 20px;
+              width: 25px;
+              vertical-align: middle;
+            }
+            .link{
+              font-size: 14px;
+            }
+          }
+        }
+      }
+      .footer-form{
+        textarea{
+          position: relative;
+          overflow: hidden;
+          &:focus{
+            box-shadow: none;
+            border:1px solid #ced4da;
+          }
+        }
+
+        .form-group{
+          button{
+            position: absolute;
+            right: 54px;
+            top: 75px;
+            opacity: 0;
+            transition: opacity .4s;
+          }
+          &:hover{
+            button{
+              opacity: 1;
+              transition: opacity .4s;
+            }
+          }
+        }
+      }
+    }
+  }
+}

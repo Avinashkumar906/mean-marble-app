@@ -1,0 +1,160 @@
+div,
+form,
+input,
+select,
+textarea,
+.nsm-content,
+p {
+	padding: 0;
+	margin: 0;
+	outline: none;
+	font-family: Roboto, Arial, sans-serif;
+	font-size: 14px;
+	color: #666;
+	line-height: 22px;
+}
+
+h1 {
+	position: absolute;
+	margin: 0;
+	line-height: 42px;
+	font-size: 42px;
+	color: #fff;
+	z-index: 2;
+}
+
+.testbox {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: inherit;
+  box-shadow: 0 10px 11px #15151530;
+}
+
+form {
+	width: 100%;
+	padding: 20px;
+	border-radius: 6px;
+	background: #fff;
+}
+
+.banner {
+	position: relative;
+	height: 200px;
+	background: url('https://www.lifewire.com/thmb/yLFRNBmwLcKDRnkaZ0B0nXgLAQM=/960x640/filters:no_upscale():max_bytes(150000):strip_icc()/upload-2c485b5b6fef41f39a05afb9adfce03e.png');
+	background-position: center;
+	background-size: cover;
+	box-shadow: 0 0 6px 0 #d6e0f5;
+	cursor: pointer;
+	img{
+		height: 100%;
+		width: 100%;
+	}
+}
+
+input,
+select,
+textarea {
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.multifile{
+  width: 100%;
+	padding: 5px;
+  // text-align: center;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+input {
+	width: 100%;
+	padding: 5px;
+}
+
+input[type="date"] {
+	padding: 4px 5px;
+}
+input[type="file"] {
+    background: transparent;
+}
+
+select {
+	width: 100%;
+	padding: 7px 0;
+	background: transparent;
+}
+
+textarea {
+	width: 100%;
+	padding: 5px;
+}
+
+.item input:hover,
+.multifile:hover,
+.item select:hover,
+.item textarea:hover {
+	border: 1px solid transparent;
+	box-shadow: 0 0 6px 0 #d6e0f5;
+	color: #d6e0f5;
+}
+
+.item {
+	position: relative;
+	margin: 10px 0;
+}
+
+input[type="date"]::-webkit-inner-spin-button {
+	display: none;
+}
+
+.item i,
+input[type="date"]::-webkit-calendar-picker-indicator {
+	position: absolute;
+	font-size: 20px;
+	color: #a9a9a9;
+}
+
+.item i {
+	right: 2%;
+	top: 28px;
+	z-index: 1;
+}
+
+[type="date"]::-webkit-calendar-picker-indicator {
+	right: 1%;
+	z-index: 2;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.btn-block {
+	margin-top: 10px;
+	text-align: center;
+}
+
+button {
+	width: 150px;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	background: #0087cc;
+	font-size: 16px;
+	color: #fff;
+	cursor: pointer;
+}
+
+button:hover {
+	background: #6eb8dd;
+}
+
+@media (min-width: 568px) {
+	.name-item,
+	.city-item {
+		display: flex;
+		flex-wrap: wrap;
+		// justify-content: space-between;
+	}
+}
