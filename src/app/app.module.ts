@@ -9,6 +9,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { LightboxModule } from 'ngx-lightbox';
 import { ScrollEventModule } from 'ngx-scroll-event';
 import { ParallaxModule, ParallaxConfig } from 'ngx-parallax';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorService } from './service/auth-interceptor.service'
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
@@ -54,7 +56,7 @@ import { AuthService } from './service/auth.service';
     ScrollEventModule,
     ParallaxModule
   ],
-  providers: [HttpService, AlbumService, AuthService],
+  providers: [ {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptorService,multi:true}, HttpService, AlbumService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

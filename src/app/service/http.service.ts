@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { AlbumService } from './album.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
@@ -44,9 +44,26 @@ export class HttpService {
     );
   }
 
+  // Delete image from masonry component
+  deleteMasonryImage(id:string){
+    this.spinnerService.show('mainSpinner')
+    this.http.get('https://api4asquare.herokuapp.com/deleteimage/'+id).subscribe(
+      (data)=>{
+        this.getAlbums();
+        this.getMasonryImages();
+        this.spinnerService.hide('mainSpinner')
+      },
+      (err)=>{
+        this.spinnerService.hide('mainSpinner')
+        alert(err.message)
+      }
+    );
+  }
+
   // image uploader to cloudinary using a node api
   imageUploader(form){
-    return this.http.post('https://api4asquare.herokuapp.com/uploadimage',form)
+    const headers = new HttpHeaders().set('InterceptorSkipHeader', '');
+    return this.http.post('https://api4asquare.herokuapp.com/uploadimage', form, { headers })
   }
 
   // album & Image data upload to mongo db

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { AlbumService } from 'src/app/service/album.service';
 import { Lightbox } from 'ngx-lightbox';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-album',
@@ -36,7 +37,8 @@ export class AlbumComponent implements OnInit {
   constructor(
       private smartModalService:NgxSmartModalService,
       private albumService: AlbumService,
-      private lightbox:Lightbox
+      private lightbox:Lightbox,
+      private authService:AuthService
     ) { }
 
   ngOnInit() {
@@ -65,5 +67,13 @@ export class AlbumComponent implements OnInit {
 
   getSubstring(month:string){
     return month.substring(0,3)
+  }
+
+  delete(id:string){
+    console.log(id)
+  }
+
+  isLogged(){
+    return this.authService.isAuthenticated()
   }
 }

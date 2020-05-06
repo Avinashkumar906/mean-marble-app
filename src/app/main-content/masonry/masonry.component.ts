@@ -3,6 +3,7 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 import { AlbumService } from 'src/app/service/album.service';
 import { Lightbox } from 'ngx-lightbox';
 import { AuthService } from '../../service/auth.service';
+import { HttpService } from '../../service/http.service'
 
 @Component({
   selector: 'app-masonry',
@@ -19,13 +20,15 @@ export class MasonryComponent implements OnInit,AfterViewInit {
       private albumService: AlbumService,
       public smartModalSrvs: NgxSmartModalService,
       private lightbox: Lightbox,
-      private authService: AuthService
+      private authService: AuthService,
+      private httpService: HttpService
     ) { }
 
   ngOnInit() {
      this.albumService.changeDetection.subscribe(
       (data:Array<{}>)=>{
         this.images=data.reverse();
+        this.paginationItems = [];
         for(let i = this.currentpage; i<data.length && i<this.numberOfItems; i++){
           this.paginationItems.push(data[i])
         }
@@ -95,7 +98,7 @@ export class MasonryComponent implements OnInit,AfterViewInit {
   }
 
   delete(id:string){
-    console.log(id)
+    this.httpService.deleteMasonryImage(id)
   }
 
   isLogged(){
