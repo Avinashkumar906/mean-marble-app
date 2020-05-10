@@ -3,6 +3,7 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 import { AlbumService } from 'src/app/service/album.service';
 import { Lightbox } from 'ngx-lightbox';
 import { AuthService } from '../../service/auth.service';
+import { HttpService } from '../../service/http.service';
 
 @Component({
   selector: 'app-album',
@@ -38,7 +39,8 @@ export class AlbumComponent implements OnInit {
       private smartModalService:NgxSmartModalService,
       private albumService: AlbumService,
       private lightbox:Lightbox,
-      private authService:AuthService
+      private authService:AuthService,
+      private httpService : HttpService
     ) { }
 
   ngOnInit() {
@@ -69,8 +71,8 @@ export class AlbumComponent implements OnInit {
     return month.substring(0,3)
   }
 
-  delete(id:string){
-    console.log(id)
+  deleteAlbum(id:string){
+    this.httpService.deleteAlbum(id)
   }
 
   isLogged(){

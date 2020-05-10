@@ -60,6 +60,22 @@ export class HttpService {
     );
   }
 
+  // Delete Album from album omponnt
+  deleteAlbum(id:string){
+    this.spinnerService.show('mainSpinner')
+    this.http.get('https://api4asquare.herokuapp.com/deletealbum/'+id).subscribe(
+      (data)=>{
+        this.getAlbums();
+        this.getMasonryImages();
+        this.spinnerService.hide('mainSpinner')
+      },
+      (err)=>{
+        this.spinnerService.hide('mainSpinner')
+        alert(err.message)
+      }
+    );
+  }
+
   // image uploader to cloudinary using a node api
   imageUploader(form){
     const headers = new HttpHeaders().set('InterceptorSkipHeader', '');

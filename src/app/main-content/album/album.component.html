@@ -22,7 +22,10 @@
                   <h1 class="title">{{item.title}}</h1>
                   <p class="text">{{item.description}}</p>
                   <p class="author text-right text-muted">By - {{item.author}}</p>
-                  <p class="author text-center text-muted" (click)="openLightbox(i)" style="cursor:pointer"><em>View Album</em></p>
+                  <p class="author text-center text-muted" style="cursor:pointer">
+                    <em (click)="openLightbox(i)">View Album </em>
+                    <em *ngIf="isLogged()" (click)="deleteAlbum(item._id)"> / Delete Album</em>
+                  </p>
                   <label for="show-menu" class="menu-button">
                       <span></span>
                   </label>
