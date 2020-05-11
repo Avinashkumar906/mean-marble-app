@@ -5,12 +5,12 @@
                 <h4 class="h4">Login</h4>
                 <input type="text" placeholder="username" name="user" [(ngModel)]="username"><br>
                 <input type="password" placeholder="password" name="password" [(ngModel)]="password"><br>
-                <input type="button" value="Login" (click)="submit()">
+                <span class="symp-btn" (click)="submit()">Login</span>
                 <div> <p class="h6">Don't have username.<br>Contact Admin!</p></div>
             </div>
             <div>
-                <input *ngIf="isLogged()" type="button" value="Logout" (click)="logout()">
-                <input [routerLink]="['/index']" type="button" value="Home">
+                <span  class="symp-btn" *ngIf="isLogged()" (click)="logout()">logout</span>
+                <span class="symp-btn" [routerLink]="['/index']" >Home</span>
             </div>
         </div>
 	</div>

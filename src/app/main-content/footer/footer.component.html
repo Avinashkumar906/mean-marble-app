@@ -1,50 +1,95 @@
 <div class="container-fluid">
-  <div class="row align-items-center heading">
-    <div class="col p-0">
-      <h1 class="h1" data-aos="fade-left">
-        Get In <br/>&nbsp;&nbsp;Contact.
-      </h1>
-    </div>
-  </div>
-  <div class="w-100 px-4">
-    <div class="row m-0 footer">
-        <div class="col-md-6 p-0">
-            <div class="footer-div">
-                <h4 class="h4">Contact Us
-                    <span class=""></span>
-                </h4>
-                <div class="social">
-                    <ul class="ul">
-                        <li>
-                            <span class="icon">
-                                <i class="fas fa-envelope"></i>
-                            </span>
-                            <span class="link"> avinashkumar906@gmail.com </span>
-                        </li>
-                        <li>
-                            <span class="icon">
-                                <i class="fas fa-thumbtack"></i>
-                            </span>
-                            <span class="link"> Badarpur, Delhi 110044</span>
-                        </li>
-                    </ul>
-
-                </div>
-
-            </div>
+    <div class="row align-items-center heading">
+        <div class="col p-0">
+            <h1 class="h1" data-aos="fade-left">
+                Contact
+                <br/>&nbsp;&nbsp;Me.
+            </h1>
         </div>
-        <div class="col-md-6 p-0">
-            <!-- <ngx-spinner name="messageSpinner" [fullScreen]="false" type="ball-clip-rotate-multiple" size="medium"></ngx-spinner> -->
-            <div class="footer-div">
-                <h4 class="h4">Write Us </h4>
-                <div class="footer-form">
+    </div>
+    <div class="w-100 px-4">
+        <div class="row justify-content-md-center">
+            <div class="col-md-8">
+                <div class="contact-form">
+                    <p class="text-center">
+                        I'm available for freelancing. feel free to shoot me a message.
+                    </p>
+                    <div id="contact-form-result"></div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Name" required="">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Email" required="">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Phone" required="">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Website" required="">
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="form-group">
-                        <textarea rows="2" class="form-control" name="message" placeholder="Enter Name and Message" [(ngModel)]="message"></textarea>
-                        <button type="submit" (click)="submit()" class="btn btn-primary">Send</button>
+                        <textarea rows="5" class="form-control" placeholder="Message" required="" name="message" [(ngModel)]="message"></textarea>
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <button type="submit" (click)="submit()" class="symp-btn" style="cursor: pointer;">Send Message</button>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
-  </div>
+    <!-- Footer social section -->
+    <div class="footer bg-lightgray section-block">					
+        <div class="container">						
+            <div class="row">							
+                <div class="col-sm-6 text-left">
+                    <h4>Avinash Aggarwal</h4>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <ul class="footer-social">
+                        <li>
+                            <a href="https://www.facebook.com/rocx.sandy">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/avinash_906">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/avinash-aggarwal-a98a46a5">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>							
+            </div>
+        </div>	
+    </div>
 </div>

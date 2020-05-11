@@ -37,24 +37,24 @@
     </div>
     <div class="w-100">
       <div class="m-2 text-center">
-        <span class="btn btn-light" *ngIf="isLogged()" (click)="openUpload($event)">upload</span>
+        <span class="symp-btn" *ngIf="isLogged()" (click)="openUpload($event)">upload</span>
       </div>
       <nav aria-label="" class="text-dark my-2">
           <ul class="pagination justify-content-center">
               <li class="page-item">
-                  <a class="page-link bg-light" (click)="firstPage(masonry)">&lt;&lt;</a>
+                  <a class="page-link" (click)="firstPage(masonry)">&lt;&lt;</a>
               </li>
               <li class="page-item">
-                  <a class="page-link bg-light" (click)="prevPage(masonry)">&lt;</a>
+                  <a class="page-link" (click)="prevPage(masonry)">&lt;</a>
               </li>
               <li class="page-item">
-                  <a class="page-link bg-light">{{currentpage + 1}}</a>
+                  <a class="page-link">{{currentpage + 1}}</a>
               </li>
               <li class="page-item">
-                  <a class="page-link bg-light" (click)="nextPage(masonry)">&gt;</a>
+                  <a class="page-link" (click)="nextPage(masonry)">&gt;</a>
               </li>
               <li class="page-item">
-                  <a class="page-link bg-light" (click)="lastPage(masonry)">&gt;&gt;</a>
+                  <a class="page-link" (click)="lastPage(masonry)">&gt;&gt;</a>
               </li>
           </ul>
       </nav>

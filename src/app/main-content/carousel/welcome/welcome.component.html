@@ -6,8 +6,8 @@
     <div class="col-8 text-center">
         <p style="font-family:cursive;">“Photography is a way of feeling, of touching, of loving. What you have caught on film is captured forever… It remembers little things, long after you have forgotten everything.”</p>
         <div class="py-2">
-            <a *ngIf="!isLogged()" [routerLink]="['/index','login']" class="login-btn"><i class="fas fa-key"></i> Login</a>
-            <a *ngIf="isLogged()" (click)="logout()" class="login-btn"><i class="fas fa-lock"></i> Logout</a>
+            <a *ngIf="!isLogged()" [routerLink]="['/index','login']" class="symp-btn"><i class="fas fa-key"></i> Login</a>
+            <a *ngIf="isLogged()" (click)="logout()" class="symp-btn"><i class="fas fa-lock"></i> Logout</a>
         </div>
         <!-- <p class="text-center">— Aaron Siskind</p> -->
     </div>
