@@ -1,5 +1,5 @@
 # Dist files
-dist/
+dist/miraclecharitablesociety/*
 
 # Dependency directories
 node_modules/

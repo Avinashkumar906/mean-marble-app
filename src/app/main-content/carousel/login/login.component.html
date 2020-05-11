@@ -8,7 +8,7 @@
                 <span class="symp-btn" (click)="submit()">Login</span>
                 <div> <p class="h6">Don't have username.<br>Contact Admin!</p></div>
             </div>
-            <div>
+            <div  class="text-center">
                 <span  class="symp-btn" *ngIf="isLogged()" (click)="logout()">logout</span>
                 <span class="symp-btn" [routerLink]="['/index']" >Home</span>
             </div>
