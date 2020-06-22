@@ -91,13 +91,22 @@ export class ModalsComponent implements OnInit {
       this.httpService.postMasonryImage(object).subscribe(
         (data)=>{
           this.smartModalSrvs.getModal('upload').close();
-          this.httpService.getMasonryImages();
-          this.httpService.getAlbums();
+          this.imageForm.reset()
+          this.urls = [];
+          this.imageId = null;
+          this.preview = null;
+          this.closeModal();
         },
         (err)=>console.log(err.message)
       )
     } else {
       alert('please upload a file!')
     }
+  }
+
+  closeModal(){
+    
+    this.httpService.getMasonryImages();
+    this.httpService.getAlbums();
   }
 }
