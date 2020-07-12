@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { AlbumService } from '../service/album.service';
 import { ScrollEvent } from 'ngx-scroll-event';
 
@@ -6,7 +6,7 @@ import { ScrollEvent } from 'ngx-scroll-event';
   selector: 'app-main-content',
   templateUrl: './main-content.component.html'
 })
-export class MainContentComponent implements OnInit {
+export class MainContentComponent implements OnInit,OnDestroy {
 
   currentSection = '';
 
@@ -15,6 +15,9 @@ export class MainContentComponent implements OnInit {
     private albumService:AlbumService
     ) {
   }
+  ngOnDestroy(): void {
+    window.removeEventListener('scroll', this.scroll, true);
+  }
 
   ngOnInit() {
     this.albumService.sectionChanged.subscribe(
@@ -22,27 +25,19 @@ export class MainContentComponent implements OnInit {
         this.currentSection = data;
       }
     )
+    window.addEventListener('scroll', this.scroll, true); 
   }
 
-  handleScroll(event:ScrollEvent){
-    let home = this.elRef.nativeElement.querySelector('#home');
-    let image = this.elRef.nativeElement.querySelector('#image');
-    let album = this.elRef.nativeElement.querySelector('#album');
-    let contact = this.elRef.nativeElement.querySelector('#contact');
+  scroll = (event): void => {
+    let sections = this.elRef.nativeElement.querySelectorAll('.section');
     let scroll = document.documentElement.scrollTop || document.body.scrollTop;
-    // console.log(event)
-    if(scroll >= home.offsetTop && scroll < (home.offsetTop + home.offsetHeight) && this.currentSection !== 'home'){
-      this.currentSection = 'home';
-      this.albumService.sectionChanged.next('home')
-    } else if(scroll >= image.offsetTop && scroll < (image.offsetTop + image.offsetHeight) && this.currentSection !== 'image'){
-      this.currentSection = 'image';
-      this.albumService.sectionChanged.next('image')
-    } else if(scroll >= album.offsetTop && scroll < (album.offsetTop + album.offsetHeight) &&  this.currentSection !== 'album'){
-      this.currentSection = 'album';
-      this.albumService.sectionChanged.next('album')
-    }else if(scroll >= contact.offsetTop && scroll < (contact.offsetTop + contact.offsetHeight) &&  this.currentSection !== 'contact'){
-      this.currentSection = 'contact';
-      this.albumService.sectionChanged.next('contact')
-    }
-  }
+    sections.forEach(section => {
+      let id = section.getAttribute('id')
+      if(scroll >= section.offsetTop && scroll < (section.offsetTop + section.offsetHeight) && this.currentSection !== id){
+        this.currentSection = id;
+          this.albumService.sectionChanged.next(id);
+      }
+    });
+  };
+  
 }

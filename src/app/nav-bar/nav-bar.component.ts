@@ -20,11 +20,17 @@ export class NavBarComponent implements OnInit, OnDestroy{
   ) { }
 
   scrollTo(event) {
+    event.preventDefault();
     let clickedSection = event.target.getAttribute('data');
     if (clickedSection &&  clickedSection !== this.currentSection) {
       this.currentSection = clickedSection;
       this.albumService.sectionChanged.next(clickedSection)
-      document.getElementById(clickedSection).scrollIntoView({ behavior: 'smooth' });
+      
+      document.getElementById(clickedSection).scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'center'
+      });
     }
   }
   ngOnInit(){
@@ -36,6 +42,6 @@ export class NavBarComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(){
-
+    this.sectionChange.unsubscribe()
   }
 }
