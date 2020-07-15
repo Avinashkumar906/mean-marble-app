@@ -1,7 +1,7 @@
 <ngx-spinner name="mainSpinner" bdColor="rgba(6, 0, 0, 1)"></ngx-spinner>
 
 <div class="main-container">
-  <app-modals></app-modals>
+  
 	<div class="side-nav" (click)="toggleSideNav($event)">
 		<!-- nav bar black-->
 		<app-nav-bar [isOpen]="toggle"></app-nav-bar>
@@ -12,4 +12,6 @@
 		<router-outlet></router-outlet>
 	</div>
 
+	<app-modals></app-modals>
+	
 </div>

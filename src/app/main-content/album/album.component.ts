@@ -4,6 +4,7 @@ import { AlbumService } from 'src/app/service/album.service';
 import { Lightbox } from 'ngx-lightbox';
 import { AuthService } from '../../service/auth.service';
 import { HttpService } from '../../service/http.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-album',
@@ -29,7 +30,7 @@ export class AlbumComponent implements OnInit {
       768:{
           items:2
       },
-      1300:{
+      1024:{
           items:3
       }
     }
@@ -40,7 +41,8 @@ export class AlbumComponent implements OnInit {
       private albumService: AlbumService,
       private lightbox:Lightbox,
       private authService:AuthService,
-      private httpService : HttpService
+      private httpService : HttpService,
+      private spinnerService : NgxSpinnerService
     ) { }
 
   ngOnInit() {
@@ -63,7 +65,7 @@ export class AlbumComponent implements OnInit {
   }
 
   openUploadAlbum(event){
-    this.smartModalService.setModalData({ album: true },'upload')
+    // this.smartModalService.setModalData({ album: true },'upload')
     this.smartModalService.getModal('upload').open();
   }
 
@@ -71,8 +73,18 @@ export class AlbumComponent implements OnInit {
     return month.substring(0,3)
   }
 
-  deleteAlbum(id:string){
-    this.httpService.deleteAlbum(id)
+  deleteAlbum(id:string,index:number){
+    this.spinnerService.show('mainSpinner')
+    this.httpService.deleteAlbum(id).subscribe(
+      (data)=>{
+        this.albums.splice(index,1)
+        this.spinnerService.hide('mainSpinner')
+      },
+      (err)=>{
+        this.spinnerService.hide('mainSpinner')
+        alert(err.message)
+      }
+    );
   }
 
   isLogged(){

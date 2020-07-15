@@ -14,6 +14,11 @@ export class HttpService {
       private spinnerService: NgxSpinnerService
     ) { }
 
+  //development api..
+  getReqRes(form) {
+    return this.http.post('https://api4asquare.herokuapp.com/postimage',form);
+  }
+
   // Get images for masonry component
   getMasonryImages(){
     this.spinnerService.show('mainSpinner')
@@ -46,40 +51,19 @@ export class HttpService {
 
   // Delete image from masonry component
   deleteMasonryImage(id:string){
-    this.spinnerService.show('mainSpinner')
-    this.http.get('https://api4asquare.herokuapp.com/deleteimage/'+id).subscribe(
-      (data)=>{
-        this.getAlbums();
-        this.getMasonryImages();
-        this.spinnerService.hide('mainSpinner')
-      },
-      (err)=>{
-        this.spinnerService.hide('mainSpinner')
-        alert(err.message)
-      }
-    );
+    // this.spinnerService.show('mainSpinner')
+    return this.http.get('https://api4asquare.herokuapp.com/deleteimage/'+id)
   }
 
   // Delete Album from album omponnt
   deleteAlbum(id:string){
-    this.spinnerService.show('mainSpinner')
-    this.http.get('https://api4asquare.herokuapp.com/deletealbum/'+id).subscribe(
-      (data)=>{
-        this.getAlbums();
-        this.getMasonryImages();
-        this.spinnerService.hide('mainSpinner')
-      },
-      (err)=>{
-        this.spinnerService.hide('mainSpinner')
-        alert(err.message)
-      }
-    );
+    // this.spinnerService.show('mainSpinner')
+    return this.http.get('https://api4asquare.herokuapp.com/deletealbum/'+id)
   }
 
   // image uploader to cloudinary using a node api
   imageUploader(form){
-    const headers = new HttpHeaders().set('InterceptorSkipHeader', '');
-    return this.http.post('https://api4asquare.herokuapp.com/uploadimage', form, { headers })
+    return this.http.post('https://api4asquare.herokuapp.com/uploadimagev2', form )
   }
 
   // album & Image data upload to mongo db

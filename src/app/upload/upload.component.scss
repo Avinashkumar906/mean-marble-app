@@ -1,0 +1,65 @@
+h1 {
+    font-family: 'Righteous';
+    font-weight: 500;
+  }
+.container-fluid{
+    padding: 4rem 0 0 0;
+    background-color: rgba(211, 211, 211, 0.5);
+    .heading{
+        color: rgba(0, 0, 0, 0.65);
+        margin: 0 0 2rem 2rem;
+        h1 {
+        font-family: 'Righteous';
+        font-weight: 500;
+        }
+    }
+    .upload-form{
+        .preview{
+            background-color: white;
+            padding:10px;
+            border:solid 1px #BBB;
+            -webkit-box-shadow:none;
+            -moz-box-shadow:none;
+            box-shadow:none;
+            border-radius:0;
+            vertical-align:middle;
+            span{
+                background-color: #bbb;
+                &:hover{
+                    background-color: #bbbbbbd9;
+                    color: #343a40 !important;
+                }
+            }
+            .preview-text{
+                padding: 10px;
+                margin-bottom: 10px;
+                max-height: 200px;
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+            }
+        }
+        .form-control{
+        padding:10px;
+        height:auto;
+        border:solid 1px #BBB;
+        -webkit-box-shadow:none;
+        -moz-box-shadow:none;
+        box-shadow:none;
+        border-radius:0;
+        vertical-align:middle;
+        }
+        .form-control:focus{
+        border-color:#B7A389;
+        -webkit-box-shadow:none;
+        -moz-box-shadow:none;
+        box-shadow:none;	
+        }
+        .form-group{
+        margin-bottom:25px;
+        }
+        .alert{
+        border-radius:0;
+        }
+    }
+}

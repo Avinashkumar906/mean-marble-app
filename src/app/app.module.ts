@@ -23,10 +23,11 @@ import { HttpService } from './service/http.service';
 import { ModalsComponent } from './modals/modals.component';
 import { AlbumService } from './service/album.service';
 import { ScrollSpyDirective } from './service/scroll-spy.directive';
-import { UploadComponent } from './component/upload/upload.component';
+// import { UploadComponent } from './component/upload/upload.component';
 import { WelcomeComponent } from './main-content/carousel/welcome/welcome.component';
 import { LoginComponent } from './main-content/carousel/login/login.component';
 import { AuthService } from './service/auth.service';
+import { UploadComponent } from './upload/upload.component';
 
 @NgModule({
   declarations: [
@@ -39,9 +40,10 @@ import { AuthService } from './service/auth.service';
     FooterComponent,
     ModalsComponent,
     ScrollSpyDirective,
-    UploadComponent,
+    // UploadComponent,
     WelcomeComponent,
-    LoginComponent
+    LoginComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,

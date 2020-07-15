@@ -16,7 +16,7 @@
                       <div class="date">
                             <p class="p">{{ image.day }} <sup>Th</sup> {{ image.month + ', ' + image.year }}</p>
                       </div>
-                      <div class="edit" *ngIf="isLogged()" (click)="delete(image._id)">
+                      <div class="edit" *ngIf="isLogged()" (click)="delete(image._id,i)">
                             <p class="p">Delete?</p>
                       </div>
                   </div>
@@ -37,7 +37,7 @@
     </div>
     <div class="w-100">
       <div class="m-2 text-center">
-        <span class="symp-btn" *ngIf="isLogged()" (click)="openUpload($event)">upload</span>
+        <span class="symp-btn bg-dark" *ngIf="isLogged()" (click)="openUpload($event)">upload</span>
       </div>
       <nav aria-label="" class="text-dark my-2">
           <ul class="pagination justify-content-center">

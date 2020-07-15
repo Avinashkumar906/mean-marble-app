@@ -24,7 +24,7 @@
                   <p class="author text-right text-muted">By - {{item.author}}</p>
                   <p class="author text-center text-muted" style="cursor:pointer">
                     <em (click)="openLightbox(i)">View Album </em>
-                    <em *ngIf="isLogged()" (click)="deleteAlbum(item._id)"> / Delete Album</em>
+                    <em *ngIf="isLogged()" (click)="deleteAlbum(item._id,i)"> / Delete Album</em>
                   </p>
                   <label for="show-menu" class="menu-button">
                       <span></span>
@@ -38,7 +38,7 @@
     </div>
     <div class="w-100" *ngIf="isLogged()">
       <div class="m-2 text-center">
-        <button class="symp-btn" (click)="openUploadAlbum($event)">upload</button>
+        <button class="symp-btn btn-dark" (click)="openUploadAlbum($event)">upload</button>
       </div>
     </div>
   </div>

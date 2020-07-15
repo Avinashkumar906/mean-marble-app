@@ -1,0 +1,83 @@
+<div class="container-fluid">
+    <div class="row align-items-center heading">
+        <div class="col p-0">
+            <h1 class="h1" data-aos="fade-left">
+                {{ id ? "Update" : "Upload"}}
+                <br />&nbsp;&nbsp;Here.
+            </h1>
+        </div>
+    </div>
+    <div class="w-100 px-4">
+        <div class="row justify-content-md-center">
+            <div class="col-md-8">
+                <form class="upload-form" [formGroup]="imageForm" (ngSubmit)="submit()">
+                    <input type="file" #cover (change)="handleFileInput($event, preview)" hidden />
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group text-center preview">
+                                <div #preview class="preview-text text-dark" [style.backgroundImage]="previewImage" [style.height]="previewImage? '200px': ''">
+                                    <span *ngIf="!previewImage" class="bg-light text-dark p-2">Image Preview.</span>
+                                </div>
+                                <span (click)="cover.click()" class="symp-btn text-light" bgColor="#bbb">Add Cover Image</span>        
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="title" placeholder="Title"/>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="author" placeholder="Author"/>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="place" placeholder="Place" />
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="tags" placeholder="Tags" />
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="more" placeholder="Gdrive"/>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Dummy" />
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea rows="5" class="form-control" placeholder="Message" formControlName="description" ></textarea>
+                        <div class="help-block with-errors"></div>
+                    </div>
+
+                    <div class="form-group text-center">
+                        <button type="submit" class="symp-btn text-dark">Save Info</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

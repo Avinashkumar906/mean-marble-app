@@ -4,6 +4,7 @@ import { AlbumService } from 'src/app/service/album.service';
 import { Lightbox } from 'ngx-lightbox';
 import { AuthService } from '../../service/auth.service';
 import { HttpService } from '../../service/http.service'
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-masonry',
@@ -21,13 +22,15 @@ export class MasonryComponent implements OnInit,AfterViewInit {
       public smartModalSrvs: NgxSmartModalService,
       private lightbox: Lightbox,
       private authService: AuthService,
-      private httpService: HttpService
+      private httpService: HttpService,
+      private spinnerService: NgxSpinnerService
     ) { }
 
   ngOnInit() {
      this.albumService.changeDetection.subscribe(
       (data:Array<{}>)=>{
         this.images=data.reverse();
+        //console.log(data)
         this.paginationItems = [];
         for(let i = this.currentpage; i<data.length && i<this.numberOfItems; i++){
           this.paginationItems.push(data[i])
@@ -97,8 +100,19 @@ export class MasonryComponent implements OnInit,AfterViewInit {
     this.smartModalSrvs.getModal('upload').open()
   }
 
-  delete(id:string){
-    this.httpService.deleteMasonryImage(id)
+  delete(id:string,index:number){
+    this.spinnerService.show('mainSpinner')
+    this.httpService.deleteMasonryImage(id).subscribe(
+      (data)=>{
+          console.info(data)
+          this.paginationItems.splice(index,1);
+          this.spinnerService.hide('mainSpinner')
+        },
+        (err)=>{
+          this.spinnerService.hide('mainSpinner')
+          alert(err.message)
+        }
+      );
   }
 
   isLogged(){

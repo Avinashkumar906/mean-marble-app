@@ -119,7 +119,7 @@
   .pagination{
     .page-item{
       .page-link{
-        background: rgba(0, 0, 0, .65);
+        background: #343a40;
         color:#fff;
         border-radius: 0;
         -webkit-transition:all .3s ease;
@@ -128,7 +128,7 @@
         border:none;
         text-decoration:none !important;
         &:hover{
-          background: rgba(51, 51, 51, 0.5);
+          background: #23272b;
         }
       }
     }
