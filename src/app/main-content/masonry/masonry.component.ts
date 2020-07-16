@@ -44,10 +44,10 @@ export class MasonryComponent implements OnInit,AfterViewInit {
       imgArray.push({
         src : obj.url,
         caption : obj.description,
-        thumb : obj.alt
+        thumb : obj.url,
       });
     });
-    this.lightbox.open(imgArray, index, { alwaysShowNavOnTouchDevices:true });
+    this.lightbox.open(imgArray, index, { wrapAround: true, alwaysShowNavOnTouchDevices:true, centerVertically:true, disableScrolling:true });
   }
   firstPage(element){
     let index = 0;

@@ -10,8 +10,10 @@ export class AlbumService {
 
   albumData:Array<{}> = [];
   masonryData:Array<{}> = [];
+  
   changeDetection = new Subject<any>();
   changeDetectionAlbum = new Subject<any>();
+  
   sectionChanged = new BehaviorSubject<string>('home')
 
   getData(){

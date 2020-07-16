@@ -61,7 +61,7 @@ export class AlbumComponent implements OnInit {
         thumb : obj.alt
       });
     })
-    this.lightbox.open(imageArray, 0, {alwaysShowNavOnTouchDevices:true });
+    this.lightbox.open(imageArray, 0, { wrapAround: true, alwaysShowNavOnTouchDevices:true, centerVertically:true, disableScrolling:true });
   }
 
   openUploadAlbum(event){

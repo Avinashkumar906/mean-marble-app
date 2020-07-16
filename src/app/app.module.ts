@@ -7,8 +7,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { LightboxModule } from 'ngx-lightbox';
-import { ScrollEventModule } from 'ngx-scroll-event';
-import { ParallaxModule, ParallaxConfig } from 'ngx-parallax';
+import { ParallaxModule } from 'ngx-parallax';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './service/auth-interceptor.service'
 
@@ -19,15 +18,16 @@ import { CarouselComponent } from './main-content/carousel/carousel.component';
 import { MasonryComponent } from './main-content/masonry/masonry.component';
 import { AlbumComponent } from './main-content/album/album.component';
 import { FooterComponent } from './main-content/footer/footer.component';
-import { HttpService } from './service/http.service';
-import { ModalsComponent } from './modals/modals.component';
-import { AlbumService } from './service/album.service';
-import { ScrollSpyDirective } from './service/scroll-spy.directive';
-// import { UploadComponent } from './component/upload/upload.component';
 import { WelcomeComponent } from './main-content/carousel/welcome/welcome.component';
-import { LoginComponent } from './main-content/carousel/login/login.component';
-import { AuthService } from './service/auth.service';
+import { ModalsComponent } from './modals/modals.component';
 import { UploadComponent } from './upload/upload.component';
+import { LoginComponent } from './main-content/carousel/login/login.component';
+
+import { HttpService } from './service/http.service';
+import { AlbumService } from './service/album.service';
+import { AuthService } from './service/auth.service';
+
+// import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -39,8 +39,6 @@ import { UploadComponent } from './upload/upload.component';
     AlbumComponent,
     FooterComponent,
     ModalsComponent,
-    ScrollSpyDirective,
-    // UploadComponent,
     WelcomeComponent,
     LoginComponent,
     UploadComponent
@@ -55,7 +53,6 @@ import { UploadComponent } from './upload/upload.component';
     ReactiveFormsModule,
     FormsModule,
     LightboxModule,
-    ScrollEventModule,
     ParallaxModule
   ],
   providers: [ {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptorService,multi:true}, HttpService, AlbumService, AuthService],

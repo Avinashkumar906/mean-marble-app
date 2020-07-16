@@ -41,6 +41,10 @@
       box-shadow: 0 10px 20px rgba(#000, 0.3), 0 15px 12px rgba(#000, 0.2);
       img{
         cursor: pointer;
+        margin: 0 auto;
+        display: block;
+        width: 100%;
+        min-height: 250px;
       }
       .header {
         position: absolute;

@@ -22,9 +22,14 @@ html,body{
     height: 100%;
     font-family: 'Gelasio', serif;
 }
+.lb-outerContainer{
+  background: none!important;
+}
 .nsm-content{
   padding: 0;
   top: 20px;
+  background: none;
+  box-shadow: none;
 }
 .nsm-dialog{
   max-width: 1024px;
