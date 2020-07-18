@@ -14,7 +14,7 @@ export class WelcomeComponent implements OnInit {
     private smartModalSrvs: NgxSmartModalService
   ) { }
 
-  user:{};
+  user:{name:string};
   ngOnInit() {
     this.user = {name:'Sandy'}
   }
