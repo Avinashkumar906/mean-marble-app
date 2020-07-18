@@ -2,7 +2,7 @@
     <div class="row align-items-center heading">
         <div class="col p-0">
             <h1 class="h1" data-aos="fade-left">
-                {{ id ? "Update" : "Upload"}}
+                Upload
                 <br />&nbsp;&nbsp;Here.
             </h1>
         </div>
@@ -10,43 +10,30 @@
     <div class="w-100 px-4">
         <div class="row justify-content-md-center">
             <div class="col-md-8">
-                <form class="upload-form" [formGroup]="imageForm" (ngSubmit)="submit()">
-                    <input type="file" #cover (change)="handleFileInput($event, preview)" hidden />
+                <form class="upload-form" [formGroup]="imageForm" (ngSubmit)="imageForm.valid && submit()">
+                    <input type="file" #fileHandler (change)="handleFileInput($event,previewContainer)" hidden multiple/>
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group text-center preview">
-                                <div #preview class="preview-text text-dark" [style.backgroundImage]="previewImage" [style.height]="previewImage? '200px': ''">
-                                    <span *ngIf="!previewImage" class="bg-light text-dark p-2">Image Preview.</span>
-                                </div>
-                                <span (click)="cover.click()" class="symp-btn text-light" bgColor="#bbb">Add Cover Image</span>        
+                                <div #previewContainer [ngClass]="{'preview-container' : (cover && cover.length != 0),'d-none' : (cover && cover.length == 0)}" ></div>
+                                <span *ngIf="!cover" class="bg-light text-dark p-2 d-block m-2">Image Preview.</span>
+                                <!-- <div class="preview-text text-dark" [style.backgroundImage]="previewImage" [style.height]="previewImage? '200px': ''">
+                                    <span *ngIf="cover.length>0" class="bg-light text-dark p-2">**Uploading multiple file with same info</span>
+                                </div> -->
+                                <span (click)="fileHandler.click()" class="symp-btn text-light" bgColor="#bbb">Add Image</span>        
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="title" placeholder="Title"/>
+                                <input type="text" class="form-control" formControlName="title" placeholder="Album title"/>
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="author" placeholder="Author"/>
-                                <div class="help-block with-errors"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" formControlName="place" placeholder="Place" />
-                                <div class="help-block with-errors"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="text" class="form-control" formControlName="tags" placeholder="Tags" />
+                                <input type="text" class="form-control" formControlName="place" placeholder="Enter Place"/>
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
@@ -55,25 +42,40 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="more" placeholder="Gdrive"/>
+                                <input type="text" class="form-control" formControlName="group" placeholder="Group Name" />
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Dummy" />
+                                <input type="text" class="form-control" formControlName="tags" placeholder="Tags with ',' separator" />
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="more" placeholder="Give Url of storage"/>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="author" placeholder="Author Name"/>
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <textarea rows="5" class="form-control" placeholder="Message" formControlName="description" ></textarea>
+                        <textarea rows="5" class="form-control" placeholder="Description" formControlName="description" ></textarea>
                         <div class="help-block with-errors"></div>
                     </div>
 
                     <div class="form-group text-center">
-                        <button type="submit" class="symp-btn text-dark">Save Info</button>
+                        <button type="submit" class="symp-btn text-dark" [disabled]="!imageForm.valid">Save Info</button>
                     </div>
                 </form>
             </div>

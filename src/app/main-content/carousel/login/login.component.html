@@ -1,17 +1,22 @@
 <div class="row align-items-center justify-content-center">
 	<div class="col-md-12">
-        <div class="login">
-            <div *ngIf="!isLogged()"  class="text-center">
-                <h4 class="h4">Login</h4>
-                <input type="text" placeholder="username" name="user" [(ngModel)]="username"><br>
-                <input type="password" placeholder="password" name="password" [(ngModel)]="password"><br>
-                <span class="symp-btn" (click)="submit()">Login</span>
-                <div> <p class="h6">Don't have username.<br>Contact Admin!</p></div>
-            </div>
-            <div  class="text-center">
-                <span  class="symp-btn" *ngIf="isLogged()" (click)="logout()">logout</span>
-                <span class="symp-btn" [routerLink]="['/index']" >Home</span>
-            </div>
+        <div class="login bg-grey">
+            <form #form="ngForm" (ngSubmit)="form.valid && submit(form)" *ngIf="!isLogged()" class="text-center">
+                <h2 class="h2 login-text">{{isSignInForm ? "Sign In" : "Sign Up"}}</h2>
+                <input *ngIf="!isSignInForm" type="text" placeholder="* Enter name" name="name" ngModel required><br>
+                <input type="text" placeholder="* Enter e-mail" name="email" ngModel required><br>
+                <input type="password" placeholder="* Enter password" name="password" ngModel required><br>
+                <div class="my-2">
+                    <div *ngIf="isSignInForm">
+                        <button type="submit" class="symp-btn my-2 w-100 d-block" [disabled]="!form.valid"><i class="fas fa-sign-in-alt"></i> Signin</button>
+                        <p class="btn" (click)="toggleForm()">Click here for Sign up</p> 
+                    </div>
+                    <div *ngIf="!isSignInForm">
+                        <button type="submit" class="symp-btn my-2 w-100 d-block" [disabled]="!form.valid"><i class="fas fa-sign"></i> Signup</button>
+                        <p class="btn" (click)="toggleForm()">Click here for Sign in</p> 
+                    </div>
+                </div>
+            </form>
         </div>
 	</div>
 </div>

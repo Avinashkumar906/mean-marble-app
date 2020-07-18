@@ -17,6 +17,7 @@ export class MasonryComponent implements OnInit,AfterViewInit {
   paginationItems:Array<{}> = [];
   currentpage:number = 0;
   numberOfItems:number = 10;
+  
   constructor(
       private albumService: AlbumService,
       public smartModalSrvs: NgxSmartModalService,
@@ -96,10 +97,6 @@ export class MasonryComponent implements OnInit,AfterViewInit {
     }
   }
 
-  openUpload(event){
-    this.smartModalSrvs.getModal('upload').open()
-  }
-
   delete(id:string,index:number){
     this.spinnerService.show('mainSpinner')
     this.httpService.deleteMasonryImage(id).subscribe(
@@ -117,6 +114,14 @@ export class MasonryComponent implements OnInit,AfterViewInit {
 
   isLogged(){
     return this.authService.isAuthenticated()
+  }
+
+  isAdmin(){
+    return this.authService.isAdmin()
+  }
+
+  isUsersFile(id,email){
+    return this.authService.isUsersFile(id,email)
   }
 
   ngAfterViewInit() {  }

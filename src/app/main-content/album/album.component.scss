@@ -90,7 +90,7 @@ $open-sans: 'Open Sans', sans-serif;
   }
   .wrapper {
     background-color: $white;
-    background-position: center;
+    background-position: center!important;
     background-repeat: no-repeat;
     min-height: 500px;
     position: relative;

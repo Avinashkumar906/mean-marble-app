@@ -18,11 +18,12 @@ export class CarouselComponent implements OnInit{
 
   ngOnInit() {
     this.albumService.changeDetection.subscribe(
-      (data) => {
-        let array = data.reverse()
-        for (let index = 0; index < array.length && index < 10; index++) {
-          this.myCarousel.push(array[index]);
-        }
+      (data:Array<{}>) => {
+        let array = data.sort(()=>Math.random() - .5)
+        this.myCarousel = array.map((item:{url},index)=>{
+          return index <10 ? item.url : undefined;
+        })
+        // console.log(this.myCarousel)
       },
       (err) => console.log(err)
     )

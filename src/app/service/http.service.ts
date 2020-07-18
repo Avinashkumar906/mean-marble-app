@@ -37,7 +37,7 @@ export class HttpService {
   // get image Data for album component
   getAlbums(){
     this.spinnerService.show('mainSpinner')
-    this.http.get('https://api4asquare.herokuapp.com/getalbums').subscribe(
+    this.http.get('https://api4asquare.herokuapp.com/getalbums?filter=month').subscribe(
       (data)=>{
         this.albumService.putAlbumData(data);
         this.spinnerService.hide('mainSpinner')
@@ -68,7 +68,7 @@ export class HttpService {
 
   // album & Image data upload to mongo db
   postMasonryImage(form){
-    return this.http.post('https://api4asquare.herokuapp.com/postimage', form)
+    return this.http.post('http://api4asquare.herokuapp.com/postimage', form)
   }
 
   // Sending mail to avinashkumar906@gmail.com

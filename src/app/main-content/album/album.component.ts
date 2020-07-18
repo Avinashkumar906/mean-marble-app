@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { AlbumService } from 'src/app/service/album.service';
-import { Lightbox } from 'ngx-lightbox';
+import { Lightbox, IAlbum } from 'ngx-lightbox';
 import { AuthService } from '../../service/auth.service';
 import { HttpService } from '../../service/http.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -37,57 +37,32 @@ export class AlbumComponent implements OnInit {
   }
 
   constructor(
-      private smartModalService:NgxSmartModalService,
       private albumService: AlbumService,
       private lightbox:Lightbox,
       private authService:AuthService,
-      private httpService : HttpService,
-      private spinnerService : NgxSpinnerService
     ) { }
 
   ngOnInit() {
     this.albumService.changeDetectionAlbum.subscribe(
-      (data:Array<{}>)=>this.albums=data
+      (data:Array<{}>)=>this.albums=data,
+      error=>console.log(error)
     )
   }
 
   openLightbox(index){
-    let imageArray = []
-    let selectedAlbum:any = this.albums[index]
-    selectedAlbum.urls.forEach((obj:any)=>{
-        imageArray.push({
-        src : obj.url,
-        caption : selectedAlbum.description,
-        thumb : obj.alt
-      });
+    let selectedAlbum:Array<{}> = <Array<{}>>this.albums[index];
+    let lightboxArray:IAlbum[] = <IAlbum[]>selectedAlbum.map((item:{url,description})=>{
+      return new Object({
+        src : item.url,
+        caption : item.description,
+        thumb:item.url, 
+      })
     })
-    this.lightbox.open(imageArray, 0, { wrapAround: true, alwaysShowNavOnTouchDevices:true, centerVertically:true, disableScrolling:true });
-  }
-
-  openUploadAlbum(event){
-    // this.smartModalService.setModalData({ album: true },'upload')
-    this.smartModalService.getModal('upload').open();
+    this.lightbox.open(lightboxArray, 0, { wrapAround: true, alwaysShowNavOnTouchDevices:true, centerVertically:true, disableScrolling:true });
   }
 
   getSubstring(month:string){
     return month.substring(0,3)
   }
 
-  deleteAlbum(id:string,index:number){
-    this.spinnerService.show('mainSpinner')
-    this.httpService.deleteAlbum(id).subscribe(
-      (data)=>{
-        this.albums.splice(index,1)
-        this.spinnerService.hide('mainSpinner')
-      },
-      (err)=>{
-        this.spinnerService.hide('mainSpinner')
-        alert(err.message)
-      }
-    );
-  }
-
-  isLogged(){
-    return this.authService.isAuthenticated()
-  }
 }
