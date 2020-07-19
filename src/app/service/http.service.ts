@@ -50,9 +50,9 @@ export class HttpService {
   }
 
   // Delete image from masonry component
-  deleteMasonryImage(id:string){
+  deleteMasonryImage(image:any){
     // this.spinnerService.show('mainSpinner')
-    return this.http.get('https://api4asquare.herokuapp.com/deleteimage/'+id)
+    return this.http.get(`https://api4asquare.herokuapp.com/deleteimage/?id=${image._id}&authorId=${image.authorId}&authorMail=${image.authorMail}`)
   }
 
   // Delete Album from album omponnt
@@ -68,7 +68,7 @@ export class HttpService {
 
   // album & Image data upload to mongo db
   postMasonryImage(form){
-    return this.http.post('http://api4asquare.herokuapp.com/postimage', form)
+    return this.http.post('https://api4asquare.herokuapp.com/postimage', form)
   }
 
   // Sending mail to avinashkumar906@gmail.com

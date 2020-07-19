@@ -97,9 +97,9 @@ export class MasonryComponent implements OnInit,AfterViewInit {
     }
   }
 
-  delete(id:string,index:number){
+  delete(image:any,index:number){
     this.spinnerService.show('mainSpinner')
-    this.httpService.deleteMasonryImage(id).subscribe(
+    this.httpService.deleteMasonryImage(image).subscribe(
       (data)=>{
           console.info(data)
           this.paginationItems.splice(index,1);
