@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiHostName: ' https://api4asquare.herokuapp.com'
 };

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { AlbumService } from './album.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { environment } from 'src/environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +15,12 @@ export class HttpService {
       private spinnerService: NgxSpinnerService
     ) { }
 
-  //development api..
-  getReqRes(form) {
-    return this.http.post('https://api4asquare.herokuapp.com/postimage',form);
-  }
-
   // Get images for masonry component
   getMasonryImages(){
     this.spinnerService.show('mainSpinner')
-    this.http.get('https://api4asquare.herokuapp.com/getimages').subscribe(
+    this.http.get(`${environment.apiHostName}/images`).subscribe(
       (data)=>{
+        console.log(data)
         this.albumService.putData(data);
         this.spinnerService.hide('mainSpinner')
       },
@@ -37,7 +34,7 @@ export class HttpService {
   // get image Data for album component
   getAlbums(){
     this.spinnerService.show('mainSpinner')
-    this.http.get('https://api4asquare.herokuapp.com/getalbums?filter=month').subscribe(
+    this.http.get(`${environment.apiHostName}/albums?filter=month`).subscribe(
       (data)=>{
         this.albumService.putAlbumData(data);
         this.spinnerService.hide('mainSpinner')
@@ -52,28 +49,17 @@ export class HttpService {
   // Delete image from masonry component
   deleteMasonryImage(image:any){
     // this.spinnerService.show('mainSpinner')
-    return this.http.get(`https://api4asquare.herokuapp.com/deleteimage/?id=${image._id}&authorId=${image.authorId}&authorMail=${image.authorMail}`)
-  }
-
-  // Delete Album from album omponnt
-  deleteAlbum(id:string){
-    // this.spinnerService.show('mainSpinner')
-    return this.http.get('https://api4asquare.herokuapp.com/deletealbum/'+id)
-  }
-
-  // image uploader to cloudinary using a node api
-  imageUploader(form){
-    return this.http.post('https://api4asquare.herokuapp.com/uploadimagev2', form )
+    return this.http.delete(`${environment.apiHostName}/image/?id=${image._id}`)
   }
 
   // album & Image data upload to mongo db
   postMasonryImage(form){
-    return this.http.post('https://api4asquare.herokuapp.com/postimage', form)
+    return this.http.post(`${environment.apiHostName}/image`, form)
   }
 
   // Sending mail to avinashkumar906@gmail.com
   sendMessage(form){
-    return this.http.post('https://api4asquare.herokuapp.com/postfrommarble',form)
+    return this.http.post(`${environment.apiHostName}/mail`,form)
   }
 
 }

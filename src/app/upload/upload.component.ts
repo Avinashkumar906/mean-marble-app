@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from '../service/http.service';
 import { NgxSmartModalService } from 'ngx-smart-modal';
+import { AlbumService } from '../service/album.service';
 
 @Component({
   selector: 'app-upload',
@@ -17,7 +18,8 @@ export class UploadComponent implements OnInit {
     private formBuilder: FormBuilder,
     private spinnerService: NgxSpinnerService,
     private httpService: HttpService,
-    private modalService:NgxSmartModalService
+    private modalService:NgxSmartModalService,
+    private albumService : AlbumService
   ) { }
 
   id:String;
@@ -28,6 +30,7 @@ export class UploadComponent implements OnInit {
     author:['',Validators.required],
     tags:['',Validators.required],
     more:['',Validators.required],
+    private:[false],
     description:['',Validators.required],
   });
   cover:File[];
@@ -59,9 +62,6 @@ export class UploadComponent implements OnInit {
 
   async submit(){
     try {
-      let user = JSON.parse(localStorage.getItem('user'))
-      this.imageForm.value.authorId = user._id;
-      this.imageForm.value.authorMail = user.email;
       if(this.cover && this.cover.length>0){
         this.spinnerService.show('mainSpinner')
         for(let i = 0;i<this.cover.length;i++){
@@ -69,12 +69,12 @@ export class UploadComponent implements OnInit {
           formdata.append('file',this.cover[i],this.cover[i].name);
           formdata.append('body',JSON.stringify(this.imageForm.value));
           let result:any = await this.httpService.postMasonryImage(formdata).toPromise()
-          console.log(result);
+          this.albumService.putData(result);
         }
         this.cover = [];
         this.imageForm.reset()
         alert("uploaded successfully!")
-        // this.modalService.getModal('upload').close()
+        this.modalService.getModal('upload').close()
         this.spinnerService.hide('mainSpinner')
       }else{
         alert('please upload a file!')

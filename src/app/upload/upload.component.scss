@@ -60,6 +60,9 @@ h1 {
         box-shadow:none;
         border-radius:0;
         vertical-align:middle;
+        option{
+         padding: 10px 0;   
+        }
         }
         .form-control:focus{
         border-color:#B7A389;

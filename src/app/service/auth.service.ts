@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { NgxSmartModalService } from 'ngx-smart-modal';
+import { environment } from 'src/environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -22,11 +23,11 @@ export class AuthService {
   }
 
   loginUser(data){
-    return this.http.post('https://api4asquare.herokuapp.com/userlogin', data)
+    return this.http.post(`${environment.apiHostName}/signin`, data)
   }
 
   signupUser(data){
-    return this.http.post('https://api4asquare.herokuapp.com/postsignup', data)
+    return this.http.post(`${environment.apiHostName}/signup`, data)
   }
 
   isAdmin(){
