@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../service/auth.service';
 import { NgxSmartModalService } from 'ngx-smart-modal';
+import { AlertService } from 'src/app/service/alert.service';
 
 @Component({
   selector: 'app-welcome',
@@ -11,7 +12,8 @@ export class WelcomeComponent implements OnInit {
 
   constructor(
     private authService : AuthService,
-    private smartModalSrvs: NgxSmartModalService
+    private smartModalSrvs: NgxSmartModalService,
+    private alertService:AlertService
   ) { }
 
   user:{name:string};
@@ -25,6 +27,7 @@ export class WelcomeComponent implements OnInit {
 
   logout(){
     this.authService.logout()
+    this.alertService.put({title:`Logged Out`,message:`Thanks for visiting us !`,class:'alert-info'})
   }
 
   openUploader(){

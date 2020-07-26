@@ -25,16 +25,18 @@ export class AlbumService {
 
   putData(data){
     this.masonryData = data;
-    this.updateMasonryData();
+    this.changeDetection.next(this.masonryData);
   }
   putAlbumData(data){
     this.albumData = data;
-    this.updateAlbumData();
-  }
-  updateAlbumData() {
     this.changeDetectionAlbum.next(this.albumData);
   }
-  updateMasonryData(){
+  updateAlbumData(data) {
+    this.albumData.push(data)
+    this.changeDetectionAlbum.next(this.albumData);
+  }
+  updateMasonryData(data){
+    this.masonryData.push(data)
     this.changeDetection.next(this.masonryData);
   }
 

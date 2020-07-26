@@ -1,0 +1,12 @@
+<div *ngIf="getAlert()">
+    <div class="alert alert-dismissible fade show" [ngClass]="getAlert().class" role="alert">
+        <h6 class="h6">
+            <span class="badge badge-secondary">{{alert.length}}</span>
+            <span class="title"> {{getAlert().title}}</span> 
+            <span class="message"> {{getAlert().message}}</span>
+        </h6>
+        <button type="button" class="close" aria-label="Close">
+          <span aria-hidden="true" (click)="dismissAlert()">&times;</span>
+        </button>
+    </div>
+</div>

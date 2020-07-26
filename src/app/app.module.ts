@@ -26,6 +26,8 @@ import { LoginComponent } from './main-content/carousel/login/login.component';
 import { HttpService } from './service/http.service';
 import { AlbumService } from './service/album.service';
 import { AuthService } from './service/auth.service';
+import { AlertService } from './service/alert.service';
+import { AlertComponent } from './alert/alert.component';
 
 // import 'hammerjs';
 
@@ -41,7 +43,8 @@ import { AuthService } from './service/auth.service';
     ModalsComponent,
     WelcomeComponent,
     LoginComponent,
-    UploadComponent
+    UploadComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,7 @@ import { AuthService } from './service/auth.service';
     LightboxModule,
     ParallaxModule
   ],
-  providers: [ {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptorService,multi:true}, HttpService, AlbumService, AuthService],
+  providers: [ {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptorService,multi:true}, HttpService, AlbumService, AuthService, AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
