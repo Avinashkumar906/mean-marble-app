@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../service/auth.service';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { NgxSmartModalService } from 'ngx-smart-modal';
+import { AlertService } from 'src/app/service/alert.service';
 
 @Component({
   selector: 'app-login',
@@ -13,49 +13,58 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService:AuthService,
     private modalService:NgxSmartModalService,
+    private alertService:AlertService,
   ) { }
-  username:string = '';
-  password:string = '';
-  useremail:string = '';
+
   isSignInForm:boolean;
+  isSubmitted:boolean;
 
   ngOnInit() {
     this.isSignInForm = true;
+    this.isSubmitted = false;
   }
 
   signIn(form){
     if(form.valid){
+      this.isSubmitted = true;
       this.authService.loginUser(form.value).subscribe(
         (response : any)=>{
           if(response){
             localStorage.setItem("token",response.token.toString())
             localStorage.setItem("user",JSON.stringify(response.user))
+            this.isSubmitted = false;
             this.modalService.getModal('login').close()
-            form.reset()
-            alert(`Hi ${response.user.name} !`)
+            this.alertService.put({title:`Logged In`,message:`Hi ${response.user.name} !`,class:'alert-success'})
           }
         },
-        (err)=>alert(err.error.message)
+        (err)=>{
+          this.alertService.put({title:`Login Error`,message:`${err.error.message} !`,class:'alert-warning'})
+          this.isSubmitted = false;
+        }
       );
     } else {
-      alert("All fields are required!")
+      this.alertService.put({title:`Login Error`,message:`All fields required!`,class:'alert-warning'})
     }
   }
 
-  
   signUp(form){
     if(form.valid){
-    this.authService.signupUser(form.value).subscribe(
-      (response : any)=>{
-        if(response){
-          alert(`User ${response.name} registered !`)
-          form.reset();
+      this.isSubmitted = true;
+      this.authService.signupUser(form.value).subscribe(
+        (response : any)=>{
+          if(response){
+            this.alertService.put({title:`Signed Up`,message:`${response.name} Registered!`,class:'alert-success'})
+            this.isSubmitted = false;
+            form.reset();
+          }
+        },
+        (err)=>{
+          this.alertService.put({title:`Signup Error`,message:` ${err.error.message} !`,class:'alert-warning'})
+          this.isSubmitted = false;
         }
-      },
-      (err)=>alert(err.error.message)
-      );
+        );
     } else {
-      alert("All fields are required!")
+      this.alertService.put({title:`Login Error`,message:`All fields required!`,class:'alert-warning'})
     }
   }
       

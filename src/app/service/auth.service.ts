@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { NgxSmartModalService } from 'ngx-smart-modal';
 import { environment } from 'src/environments/environment'
+import { AlertService } from './alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +9,7 @@ import { environment } from 'src/environments/environment'
 export class AuthService {
 
   constructor(
-    private http:HttpClient,
-    private modalService:NgxSmartModalService
+    private http:HttpClient
     ) { }
 
   isAuthenticated() : boolean{
@@ -38,10 +37,10 @@ export class AuthService {
     return result;
   }
 
-  isUsersFile(id,email){
+  isUsersFile(id){
     let user = JSON.parse(localStorage.getItem('user'))
     let result = false;
-    if(user && user._id == id && user.email == email)
+    if(user && user._id == id)
       result = true;
     return result;
   }
@@ -49,6 +48,5 @@ export class AuthService {
   logout(){
     localStorage.removeItem('token')
     localStorage.removeItem('user')
-    alert('thanks for visiting us!')
   }
 }

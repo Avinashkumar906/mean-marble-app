@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from '../service/http.service';
@@ -14,9 +13,7 @@ import { AlbumService } from '../service/album.service';
 export class UploadComponent implements OnInit {
 
   constructor(
-    private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private spinnerService: NgxSpinnerService,
     private httpService: HttpService,
     private modalService:NgxSmartModalService,
     private albumService : AlbumService
@@ -24,23 +21,22 @@ export class UploadComponent implements OnInit {
 
   id:String;
   imageForm:any = this.formBuilder.group({
-    title:['',Validators.required],
-    place:['',Validators.required],
-    group:['',Validators.required],
-    author:['',Validators.required],
+    title:['',[Validators.minLength(6),Validators.maxLength(25)]],
+    place:['',[Validators.minLength(4),Validators.maxLength(16)]],
+    group:['',[Validators.minLength(4),Validators.maxLength(16)]],
+    author:['',[Validators.minLength(4),Validators.maxLength(20)]],
     tags:['',Validators.required],
     more:['',Validators.required],
-    private:[false],
-    description:['',Validators.required],
+    private:['',Validators.required],
+    description:['',[Validators.required,Validators.maxLength(60)]],
   });
   cover:File[];
-  previewImage:String;
+  isUploading:Boolean;
+  uploadCount:String;
 
   ngOnInit() {
-    this.route.paramMap.subscribe(
-      (params)=>{this.id = params.get('id')},
-      (error)=>console.log(error)
-    )
+    this.isUploading = false;
+    this.uploadCount = '';
   }
 
   handleFileInput(event,element){
@@ -62,27 +58,34 @@ export class UploadComponent implements OnInit {
 
   async submit(){
     try {
-      if(this.cover && this.cover.length>0){
-        this.spinnerService.show('mainSpinner')
-        for(let i = 0;i<this.cover.length;i++){
+      let length = this.cover.length
+      if(this.cover && length>0){
+        for(let i = 0; i<length;i++){
+          this.isUploading = true;
+          this.uploadCount = `${i+1} of ${length}`;
           let formdata = new FormData();
           formdata.append('file',this.cover[i],this.cover[i].name);
           formdata.append('body',JSON.stringify(this.imageForm.value));
-          let result:any = await this.httpService.postMasonryImage(formdata).toPromise()
-          this.albumService.putData(result);
+          let result = await this.httpService.postMasonryImage(formdata).toPromise()
+          this.albumService.updateMasonryData(result);
         }
-        this.cover = [];
-        this.imageForm.reset()
+        this.close()
         alert("uploaded successfully!")
-        this.modalService.getModal('upload').close()
-        this.spinnerService.hide('mainSpinner')
       }else{
         alert('please upload a file!')
       }
     } catch (error) {
       console.log(error)
-      this.spinnerService.hide('mainSpinner')
+      this.close()
     }
+  }
+
+  close(){
+    this.cover = [];
+    this.imageForm.reset()
+    this.isUploading = false;
+    this.uploadCount = '';
+    this.modalService.getModal('upload').close()
   }
 
 }

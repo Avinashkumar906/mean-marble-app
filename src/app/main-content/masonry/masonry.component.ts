@@ -120,8 +120,8 @@ export class MasonryComponent implements OnInit,AfterViewInit {
     return this.authService.isAdmin()
   }
 
-  isUsersFile(id,email){
-    return this.authService.isUsersFile(id,email)
+  isUsersFile(id?:string){
+    return this.authService.isUsersFile(id)
   }
 
   ngAfterViewInit() {  }
