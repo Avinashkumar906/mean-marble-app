@@ -8,9 +8,9 @@ export class AlertService {
 
   constructor() { }
 
-  alertchanged = new Subject<{title:String,message:String,class:String}>();
+  alertchanged = new Subject<{}>();
 
-  put(data:{title:String,message:String,class:String}){
+  put(data:{}){
     this.alertchanged.next(data)
   }
 

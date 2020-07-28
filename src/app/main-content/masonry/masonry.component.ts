@@ -1,46 +1,49 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { NgxSmartModalService } from 'ngx-smart-modal';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { AlbumService } from 'src/app/service/album.service';
 import { Lightbox } from 'ngx-lightbox';
 import { AuthService } from '../../service/auth.service';
 import { HttpService } from '../../service/http.service'
 import { NgxSpinnerService } from 'ngx-spinner';
+import _ from 'lodash'
+import { Subscription } from 'rxjs';
+import { AlertService } from 'src/app/service/alert.service';
 
 @Component({
   selector: 'app-masonry',
   templateUrl: './masonry.component.html',
   styleUrls: ['./masonry.component.scss']
 })
-export class MasonryComponent implements OnInit,AfterViewInit {
+export class MasonryComponent implements OnInit,OnDestroy {
 
-  images:Array<{}> = this.albumService.getData()
+  images:Array<{}>;
   paginationItems:Array<{}> = [];
   currentpage:number = 0;
   numberOfItems:number = 10;
+  subscription = new Subscription;
   
   constructor(
       private albumService: AlbumService,
-      public smartModalSrvs: NgxSmartModalService,
       private lightbox: Lightbox,
       private authService: AuthService,
       private httpService: HttpService,
-      private spinnerService: NgxSpinnerService
+      private spinnerService: NgxSpinnerService,
+      private alertService : AlertService
     ) { }
 
   ngOnInit() {
-     this.albumService.changeDetection.subscribe(
+    this.images = this.albumService.getData()
+    this.fillPaginationArray()
+    this.subscription = this.albumService.changeDetection.subscribe(
       (data:Array<{}>)=>{
-        this.images=data.reverse();
-        //console.log(data)
-        this.paginationItems = [];
-        for(let i = this.currentpage; i<data.length && i<this.numberOfItems; i++){
-          this.paginationItems.push(data[i])
-        }
+        this.images = data;
+        this.fillPaginationArray()
       }
     )
   }
+
   openLightbox(index: number): void {
     let imgArray = [];
+    let newIndex = (this.currentpage*this.numberOfItems) + index
     this.images.forEach((obj:any)=> {
       imgArray.push({
         src : obj.url,
@@ -48,53 +51,35 @@ export class MasonryComponent implements OnInit,AfterViewInit {
         thumb : obj.url,
       });
     });
-    this.lightbox.open(imgArray, index, { wrapAround: true, alwaysShowNavOnTouchDevices:true, centerVertically:true, disableScrolling:true });
+    this.lightbox.open(imgArray, newIndex, { wrapAround: true, alwaysShowNavOnTouchDevices:true, centerVertically:true, disableScrolling:true });
   }
+
+  fillPaginationArray(){
+    let chunked = _.chunk(this.images,this.numberOfItems)
+    this.paginationItems = chunked[this.currentpage];
+  }
+
   firstPage(element){
-    let index = 0;
-    if(this.currentpage != 0){
-      this.currentpage = 0;
-      for(let i = this.currentpage*this.numberOfItems; i<this.images.length && i< (this.currentpage*this.numberOfItems+this.numberOfItems); i++){
-        this.paginationItems[index] = this.images[i]
-        index++;
-      }
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    this.currentpage = 0;
+    this.fillPaginationArray()
+    element.scrollIntoView({ behavior: 'smooth' });
   }
 
   lastPage(element){
-  let index = 0;
-    if(this.currentpage != Math.ceil(this.images.length/this.numberOfItems)-1){
-      this.currentpage = Math.ceil(this.images.length/this.numberOfItems) - 1;
-      for(let i = this.currentpage*this.numberOfItems; i<this.images.length && i< (this.currentpage*this.numberOfItems+this.numberOfItems); i++){
-        this.paginationItems[index] = this.images[i]
-        index++;
-      }
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    this.currentpage = Math.ceil(this.images.length/this.numberOfItems)-1;
+    this.fillPaginationArray()
+    element.scrollIntoView({ behavior: 'smooth' });
   }
 
   nextPage(element){
-    let index = 0;
-    if(this.currentpage < Math.ceil(this.images.length/this.numberOfItems)-1){
-      this.currentpage++;
-      for(let i = this.currentpage*this.numberOfItems; i<this.images.length && i< (this.currentpage*this.numberOfItems+this.numberOfItems); i++){
-        this.paginationItems[index] = this.images[i]
-        index++;
-      }
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    ++this.currentpage;
+    this.fillPaginationArray()
+    element.scrollIntoView({ behavior: 'smooth' });
   }
   prevPage(element){
-    let index = 0;
-    if(this.currentpage>0){
-      this.currentpage--;
-      for(let i = this.currentpage*this.numberOfItems; i<this.images.length && i< (this.currentpage*this.numberOfItems+this.numberOfItems); i++){
-        this.paginationItems[index] = this.images[i];
-        index++;
-      }
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    --this.currentpage;
+    this.fillPaginationArray()  
+    element.scrollIntoView({ behavior: 'smooth' });
   }
 
   delete(image:any,index:number){
@@ -102,12 +87,15 @@ export class MasonryComponent implements OnInit,AfterViewInit {
     this.httpService.deleteMasonryImage(image).subscribe(
       (data)=>{
           console.info(data)
-          this.paginationItems.splice(index,1);
+          let sliceNumber  = (this.currentpage*this.numberOfItems)+index;
+          this.images.splice(sliceNumber,1);
+          this.albumService.putData(this.images)
           this.spinnerService.hide('mainSpinner')
+          this.alertService.put({title:`Updated`,message:`Image Deleted from database`})
         },
         (err)=>{
           this.spinnerService.hide('mainSpinner')
-          alert(err.message)
+          this.alertService.put({title:`Error in Deletion`,message:`${err.error.message}`})
         }
       );
   }
@@ -124,6 +112,8 @@ export class MasonryComponent implements OnInit,AfterViewInit {
     return this.authService.isUsersFile(id)
   }
 
-  ngAfterViewInit() {  }
+  ngOnDestroy(){
+    this.subscription.unsubscribe()
+  }
 
 }

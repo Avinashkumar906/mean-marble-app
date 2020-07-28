@@ -8,23 +8,22 @@
   </div>
   <div class="row m-0 bg-custom">
     <div class="w-100 p-4">
-      <owl-carousel [options]="owlOption" [items]="albums" [carouselClasses]="['owl-theme','sliding']">
-        <div class="w-100" *ngFor="let item of albums;let i = index" data-aos="fade-in">
+      <owl-carousel [options]="owlOption" [items]="unique" [carouselClasses]="['owl-theme','sliding']">
+        <div class="w-100" *ngFor="let item of unique;let i = index" data-aos="fade-in">
           <div class="card">
-            <div class="wrapper"  [style.backgroundImage]="'url(' + item[0].url + ')'">
+            <div class="wrapper"  [style.backgroundImage]="'url(' + item.url + ')'">
               <div class="date">
-                <span class="day">{{item[0].day}}</span>
-                <span class="month">{{getSubstring(item[0].month)}}</span>
-                <span class="year">{{item[0].year}}</span>
+                <span class="day">{{item.day}}</span>
+                <span class="month">{{getSubstring(item.month)}}</span>
+                <span class="year">{{item.year}}</span>
               </div>
               <div class="data">
                 <div class="content-custom">
-                  <h1 class="title">{{item[0].title}}</h1>
-                  <p class="text">{{item[0].description}}</p>
-                  <p class="author text-right text-muted">By - {{item[0].author}}</p>
+                  <h1 class="title">{{item.title}}</h1>
+                  <p class="text">{{item.description}}</p>
+                  <p class="author text-right text-muted">By - {{item.author}}</p>
                   <p class="author text-center text-muted" style="cursor:pointer">
-                    <em (click)="openLightbox(i)">View Album </em>
-                    <!-- <em *ngIf="isLogged()" (click)="deleteAlbum(item[0]._id,i)"> / Delete Album</em> -->
+                    <em (click)="openLightbox(item.month)">View Album </em>
                   </p>
                   <label for="show-menu" class="menu-button">
                       <span></span>
@@ -36,10 +35,5 @@
         </div>
       </owl-carousel>
     </div>
-    <!-- <div class="w-100" *ngIf="isLogged()">
-      <div class="m-2 text-center">
-        <button class="symp-btn btn-dark" (click)="openUploadAlbum($event)">upload</button>
-      </div>
-    </div> -->
   </div>
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertService } from '../service/alert.service';
+import _ from 'lodash'
 
 @Component({
   selector: 'app-alert',
@@ -12,29 +13,23 @@ export class AlertComponent implements OnInit {
     private alertService:AlertService
   ) { }
 
-  alert:Array<{title:String,message:String,class:String}> = []; 
-  // = [
-  //   {'title':'hellow!','message':'this is error1','class':'danger'},
-  //   {'title':'hellow!','message':'this is error2','class':'danger'},
-  //   {'title':'hellow!','message':'this is error3','class':'danger'}
-  // ];
+  alert:Array<{}> = [];
   
   ngOnInit() {
     this.alertService.alertchanged.subscribe(
-      (data)=>this.alert.push(data)
+      (data:any)=>{
+        data.time = `${new Date().toLocaleString('en-US', { hour: 'numeric',minute:'numeric', hour12: true })}`
+        this.alert.push(data)
+      }
     )
   }
 
-  dismissAlert(){
-    this.alert.splice(this.alert.length-1,1)
+  dismissAlert(index:number){
+    _.pullAt(this.alert,index)
   }
 
-  getAlert(){
-    if(this.alert.length>0){
-      return this.alert[this.alert.length-1]
-    } else {
-      false
-    }
+  getAlerts(){
+    return _.take(this.alert,2)
   }
 
 }

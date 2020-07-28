@@ -2,20 +2,25 @@ import { Component, ElementRef, OnInit, AfterViewInit, AfterContentInit } from '
 import { HttpService } from 'src/app/service/http.service';
 
 import * as AOS from 'aos';
+import { AlbumService } from './service/album.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, AfterViewInit, AfterContentInit{
+export class AppComponent implements OnInit{
 
   toggle:boolean = false;
   title:string = 'marble gallery';
+  isLoaded:boolean = false;
 
   constructor(
       private elRef:ElementRef,
-      private httpService: HttpService
+      private httpService: HttpService,
+      private albumService: AlbumService,
+      private spinnerService:NgxSpinnerService
       ){
     AOS.init({
       duration: 500,
@@ -24,8 +29,18 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit{
   }
 
   ngOnInit(){
-    this.httpService.getMasonryImages();
-    this.httpService.getAlbums();
+    this.spinnerService.show('mainSpinner')
+    this.httpService.getMasonryImages().subscribe(
+      (data)=>{
+        this.isLoaded = true;
+        this.albumService.putData(data);
+        this.spinnerService.hide('mainSpinner')
+      },
+      (err)=>{
+        this.spinnerService.hide('mainSpinner')
+        alert(err.message)
+      }
+    );;
   }
 
   toggleSideNav(event){
@@ -39,12 +54,6 @@ export class AppComponent implements OnInit, AfterViewInit, AfterContentInit{
         this.elRef.nativeElement.querySelector('.side-nav').style.marginLeft = "-400px";
       }
     }
-  }
-
-  ngAfterViewInit(){
-      // observer.observe();
-  }
-  ngAfterContentInit(): void {
   }
 
 }

@@ -1,14 +1,8 @@
-.alert{
-    margin: 0;
-    padding: 0.75rem 4rem;
-    h6{
-        margin: 3px;
-    }
-    .title{
-        font-family: cursive;
-        font-weight: bold;
-    }
-    .message{
-        font-family: cursive;
-    }
+.alert-container{
+    max-width: 400px;
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    height: auto;
+    width: 100vw;
 }

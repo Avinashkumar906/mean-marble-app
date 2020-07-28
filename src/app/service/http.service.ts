@@ -17,18 +17,8 @@ export class HttpService {
 
   // Get images for masonry component
   getMasonryImages(){
-    this.spinnerService.show('mainSpinner')
-    this.http.get(`${environment.apiHostName}/images`).subscribe(
-      (data)=>{
-        console.log(data)
-        this.albumService.putData(data);
-        this.spinnerService.hide('mainSpinner')
-      },
-      (err)=>{
-        this.spinnerService.hide('mainSpinner')
-        alert(err.message)
-      }
-    );
+    // this.spinnerService.show('mainSpinner')
+    return this.http.get(`${environment.apiHostName}/images`)
   }
 
   // get image Data for album component
@@ -36,7 +26,7 @@ export class HttpService {
     this.spinnerService.show('mainSpinner')
     this.http.get(`${environment.apiHostName}/albums?filter=month`).subscribe(
       (data)=>{
-        this.albumService.putAlbumData(data);
+        
         this.spinnerService.hide('mainSpinner')
       },
       (err)=>{

@@ -104,6 +104,13 @@
           .text {
             height: auto;
           }
+          .icon-container{
+            display: block;
+            text-align: center;
+            span{
+              margin: 0 10px;
+            }
+          }
           .button {
             display: block;
             text-align: center;

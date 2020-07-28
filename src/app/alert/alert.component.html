@@ -1,4 +1,4 @@
-<div *ngIf="getAlert()">
+<!-- <div *ngIf="getAlert()">
     <div class="alert alert-dismissible fade show" [ngClass]="getAlert().class" role="alert">
         <h6 class="h6">
             <span class="badge badge-secondary">{{alert.length}}</span>
@@ -8,5 +8,19 @@
         <button type="button" class="close" aria-label="Close">
           <span aria-hidden="true" (click)="dismissAlert()">&times;</span>
         </button>
+    </div>
+</div> -->
+<div *ngIf="alert.length>0" class="alert-container" aria-live="polite" aria-atomic="true">
+    <div *ngFor="let item of getAlerts(),let i = index" class="toast mx-auto show" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="mr-auto"><span class="badge badge-secondary">{{alert.length - i}}</span> {{item.title}}</strong>
+            <small>{{item.time}}</small>
+            <button type="button" (click)="dismissAlert(i)" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="toast-body">
+            {{item.message}}
+        </div>
     </div>
 </div>

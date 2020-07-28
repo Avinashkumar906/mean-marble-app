@@ -1,31 +1,34 @@
-import { Component, OnInit, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { AlbumService } from 'src/app/service/album.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-carousel',
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss']
 })
-export class CarouselComponent implements OnInit{
+export class CarouselComponent implements OnInit,OnDestroy{
 
   constructor(
     private albumService: AlbumService,
     private elRef: ElementRef
   ) { }
 
-  myCarousel: Array<{}> = [];
+  myCarousel: Array<{}>;
+  subscription = new Subscription;
   owlOption = { items: 1, dots: false, navigation: false, loop: true, autoplay: true }
 
   ngOnInit() {
-    this.albumService.changeDetection.subscribe(
+    this.myCarousel = this.albumService.getData()
+    this.subscription = this.albumService.changeDetection.subscribe(
       (data:Array<{}>) => {
-        let array = data.sort(()=>Math.random() - .5)
-        this.myCarousel = array.map((item:{url},index)=>{
-          return index <10 ? item.url : undefined;
-        })
-        // console.log(this.myCarousel)
+        this.myCarousel = data
       },
       (err) => console.log(err)
     )
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe()
   }
 }

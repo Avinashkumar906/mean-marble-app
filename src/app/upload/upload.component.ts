@@ -28,7 +28,7 @@ export class UploadComponent implements OnInit {
     tags:['',Validators.required],
     more:['',Validators.required],
     private:['',Validators.required],
-    description:['',[Validators.required,Validators.maxLength(60)]],
+    description:['',[Validators.required,Validators.maxLength(120)]],
   });
   cover:File[];
   isUploading:Boolean;

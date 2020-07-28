@@ -34,16 +34,16 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("user",JSON.stringify(response.user))
             this.isSubmitted = false;
             this.modalService.getModal('login').close()
-            this.alertService.put({title:`Logged In`,message:`Hi ${response.user.name} !`,class:'alert-success'})
+            this.alertService.put({title:`Logged In`,message:`Welcome ${response.user.name} !`})
           }
         },
         (err)=>{
-          this.alertService.put({title:`Login Error`,message:`${err.error.message} !`,class:'alert-warning'})
+          this.alertService.put({title:`Login Error`,message:`${err.error.message} !`})
           this.isSubmitted = false;
         }
       );
     } else {
-      this.alertService.put({title:`Login Error`,message:`All fields required!`,class:'alert-warning'})
+      this.alertService.put({title:`Login Error`,message:`All fields required!`})
     }
   }
 
@@ -53,18 +53,18 @@ export class LoginComponent implements OnInit {
       this.authService.signupUser(form.value).subscribe(
         (response : any)=>{
           if(response){
-            this.alertService.put({title:`Signed Up`,message:`${response.name} Registered!`,class:'alert-success'})
+            this.alertService.put({title:`Signed Up`,message:`${response.name} is registered successfully!`})
             this.isSubmitted = false;
             form.reset();
           }
         },
         (err)=>{
-          this.alertService.put({title:`Signup Error`,message:` ${err.error.message} !`,class:'alert-warning'})
+          this.alertService.put({title:`Signup Error`,message:`${err.error.message} !`})
           this.isSubmitted = false;
         }
         );
     } else {
-      this.alertService.put({title:`Login Error`,message:`All fields required!`,class:'alert-warning'})
+      this.alertService.put({title:`Signup Error`,message:`All fields required!`})
     }
   }
       
