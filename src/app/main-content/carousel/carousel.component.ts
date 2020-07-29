@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { AlbumService } from 'src/app/service/album.service';
 import { Subscription } from 'rxjs';
+import _ from 'lodash'
 
 @Component({
   selector: 'app-carousel',
@@ -22,7 +23,8 @@ export class CarouselComponent implements OnInit,OnDestroy{
     this.myCarousel = this.albumService.getData()
     this.subscription = this.albumService.changeDetection.subscribe(
       (data:Array<{}>) => {
-        this.myCarousel = data
+        this.myCarousel = _.takeRight(_.shuffle(data),10)
+        console.log(this.myCarousel)
       },
       (err) => console.log(err)
     )

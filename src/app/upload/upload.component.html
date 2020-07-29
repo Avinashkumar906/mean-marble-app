@@ -23,9 +23,6 @@
                             <div class="form-group text-center preview">
                                 <div #previewContainer [ngClass]="{'preview-container' : (cover && cover.length != 0),'d-none' : (cover && cover.length == 0)}" ></div>
                                 <span *ngIf="!cover" class="bg-light text-dark p-2 d-block m-2">Image Preview.</span>
-                                <!-- <div class="preview-text text-dark" [style.backgroundImage]="previewImage" [style.height]="previewImage? '200px': ''">
-                                    <span *ngIf="cover.length>0" class="bg-light text-dark p-2">**Uploading multiple file with same info</span>
-                                </div> -->
                                 <span (click)="fileHandler.click()" class="symp-btn text-light" bgColor="#bbb">Add Image</span>        
                             </div>
                         </div>
@@ -33,14 +30,14 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="title" placeholder="Album title"/>
-                                <div class="help-block with-errors"></div>
+                                <input type="text" class="form-control" formControlName="title" placeholder="Album title" #title ngModel/>
+                                <small class="text-muted" *ngIf='isValidTitle()'><em>Must be 6 character long</em></small>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <input type="text" class="form-control" formControlName="place" placeholder="Enter Place"/>
-                                <div class="help-block with-errors"></div>
+                                <small class="text-muted" *ngIf='isValidPlace()'><em>Must be 4 character long</em></small>
                             </div>
                         </div>
                     </div>
@@ -49,13 +46,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <input type="text" class="form-control" formControlName="group" placeholder="Group Name" />
-                                <div class="help-block with-errors"></div>
+                                <small class="text-muted" *ngIf='isValidGroup()'><em>Must be 4 character long</em></small>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <input type="text" class="form-control" formControlName="tags" placeholder="Tags with ',' separator" />
-                                <div class="help-block with-errors"></div>
+                                <small class="text-muted" *ngIf='isValidTags()'><em>This is required field</em></small>
                             </div>
                         </div>
                     </div>
@@ -64,13 +61,13 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <input type="text" class="form-control" formControlName="more" placeholder="Give Url of storage"/>
-                                <div class="help-block with-errors"></div>
+                                <small class="text-muted" *ngIf='isValidMore()'><em>This is required field</em></small>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <input type="text" class="form-control" formControlName="author" placeholder="Author Name"/>
-                                <div class="help-block with-errors"></div>
+                                <small class="text-muted" *ngIf='isValidAuthor()'><em>Must be 4 character long</em></small>
                             </div>
                         </div>
                     </div>
@@ -82,14 +79,14 @@
                                     <option value="true">Private</option>
                                     <option value="false">Public</option>
                                 </select>
-                                <div class="help-block with-errors"></div>
+                                <small class="text-muted" *ngIf='isValidPrivate()'><em>This is required field</em></small>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <textarea rows="5" class="form-control" placeholder="Description" formControlName="description" ></textarea>
-                        <div class="help-block with-errors"></div>
+                        <small class="text-muted" *ngIf='isValidDescription()'><em>Maximum of 120 character</em></small>
                     </div>
 
                     <div class="form-group text-center">

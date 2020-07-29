@@ -56,6 +56,30 @@ export class UploadComponent implements OnInit {
     }
   }
 
+  isValidTitle(){
+    return !this.imageForm.controls.title.valid;
+  }
+  isValidPlace(){
+    return !this.imageForm.controls.place.valid;
+  }
+  isValidGroup(){
+    return !this.imageForm.controls.group.valid;
+  }
+  isValidTags(){
+    return !this.imageForm.controls.tags.valid;
+  }
+  isValidMore(){
+    return !this.imageForm.controls.more.valid;
+  }
+  isValidAuthor(){
+    return !this.imageForm.controls.author.valid;
+  }
+  isValidPrivate(){
+    return !this.imageForm.controls.private.valid;
+  }
+  isValidDescription(){
+    return !this.imageForm.controls.description.valid;
+  }
   async submit(){
     try {
       let length = this.cover.length

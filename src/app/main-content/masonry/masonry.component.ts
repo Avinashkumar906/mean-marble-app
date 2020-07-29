@@ -18,7 +18,7 @@ export class MasonryComponent implements OnInit,OnDestroy {
   images:Array<{}>;
   paginationItems:Array<{}> = [];
   currentpage:number = 0;
-  numberOfItems:number = 10;
+  numberOfItems:number = 4;
   subscription = new Subscription;
   
   constructor(
@@ -72,14 +72,18 @@ export class MasonryComponent implements OnInit,OnDestroy {
   }
 
   nextPage(element){
-    ++this.currentpage;
-    this.fillPaginationArray()
-    element.scrollIntoView({ behavior: 'smooth' });
+    if(this.currentpage < Math.ceil(this.images.length/this.numberOfItems)-1){
+      ++this.currentpage;
+      this.fillPaginationArray()
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   }
   prevPage(element){
-    --this.currentpage;
-    this.fillPaginationArray()  
-    element.scrollIntoView({ behavior: 'smooth' });
+    if(this.currentpage > 0){
+      --this.currentpage;
+      this.fillPaginationArray()  
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
   delete(image:any,index:number){

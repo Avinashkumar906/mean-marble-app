@@ -38,7 +38,6 @@ export class AppComponent implements OnInit{
       },
       (err)=>{
         this.spinnerService.hide('mainSpinner')
-        alert(err.message)
       }
     );;
   }

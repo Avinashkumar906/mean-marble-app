@@ -28,6 +28,7 @@ import { AlbumService } from './service/album.service';
 import { AuthService } from './service/auth.service';
 import { AlertService } from './service/alert.service';
 import { AlertComponent } from './alert/alert.component';
+import { ErrorpageComponent } from './errorpage/errorpage.component';
 
 // import 'hammerjs';
 
@@ -44,7 +45,8 @@ import { AlertComponent } from './alert/alert.component';
     WelcomeComponent,
     LoginComponent,
     UploadComponent,
-    AlertComponent
+    AlertComponent,
+    ErrorpageComponent
   ],
   imports: [
     BrowserModule,
