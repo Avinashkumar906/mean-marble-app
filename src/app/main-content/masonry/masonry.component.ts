@@ -7,6 +7,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import _ from 'lodash'
 import { Subscription } from 'rxjs';
 import { AlertService } from 'src/app/service/alert.service';
+import { NgxSmartModalService } from 'ngx-smart-modal';
 
 @Component({
   selector: 'app-masonry',
@@ -18,7 +19,7 @@ export class MasonryComponent implements OnInit,OnDestroy {
   images:Array<{}>;
   paginationItems:Array<{}> = [];
   currentpage:number = 0;
-  numberOfItems:number = 4;
+  numberOfItems:number = 10;
   subscription = new Subscription;
   
   constructor(
@@ -26,6 +27,7 @@ export class MasonryComponent implements OnInit,OnDestroy {
       private lightbox: Lightbox,
       private authService: AuthService,
       private httpService: HttpService,
+      private smartModalService:NgxSmartModalService,
       private spinnerService: NgxSpinnerService,
       private alertService : AlertService
     ) { }
@@ -90,7 +92,6 @@ export class MasonryComponent implements OnInit,OnDestroy {
     this.spinnerService.show('mainSpinner')
     this.httpService.deleteMasonryImage(image).subscribe(
       (data)=>{
-          console.info(data)
           let sliceNumber  = (this.currentpage*this.numberOfItems)+index;
           this.images.splice(sliceNumber,1);
           this.albumService.putData(this.images)
@@ -104,6 +105,10 @@ export class MasonryComponent implements OnInit,OnDestroy {
       );
   }
 
+  update(image:any){
+    this.albumService.uploadMode(image._id);
+    this.smartModalService.open('upload')
+  }
   isLogged(){
     return this.authService.isAuthenticated()
   }

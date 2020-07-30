@@ -21,6 +21,12 @@ export class HttpService {
     return this.http.get(`${environment.apiHostName}/images`)
   }
 
+   // Get image for masonry component
+   getMasonryImage(id){
+    // this.spinnerService.show('mainSpinner')
+    return this.http.get(`${environment.apiHostName}/image?id=${id}`)
+  }
+
   // get image Data for album component
   getAlbums(){
     this.spinnerService.show('mainSpinner')
@@ -45,6 +51,10 @@ export class HttpService {
   // album & Image data upload to mongo db
   postMasonryImage(form){
     return this.http.post(`${environment.apiHostName}/image`, form)
+  }
+
+  patchMasonryImage(form){
+    return this.http.patch(`${environment.apiHostName}/image`, form)
   }
 
   // Sending mail to avinashkumar906@gmail.com

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../service/auth.service';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { AlertService } from 'src/app/service/alert.service';
+import { AlbumService } from 'src/app/service/album.service';
 
 @Component({
   selector: 'app-welcome',
@@ -13,7 +14,8 @@ export class WelcomeComponent implements OnInit {
   constructor(
     private authService : AuthService,
     private smartModalSrvs: NgxSmartModalService,
-    private alertService:AlertService
+    private alertService:AlertService,
+    private albumService: AlbumService
   ) { }
 
   user:{name:string};
@@ -32,6 +34,7 @@ export class WelcomeComponent implements OnInit {
 
   openUploader(){
     if(this.isLogged()){
+      this.albumService.uploadMode(false);
       this.smartModalSrvs.getModal('upload').open()
     } else {
       this.smartModalSrvs.getModal('login').open()

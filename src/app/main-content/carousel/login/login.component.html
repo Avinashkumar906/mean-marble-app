@@ -1,8 +1,9 @@
 <div class="row align-items-center justify-content-center">
 	<div class="col-12">
-        <div class="login bg-grey">
+        <div class="login bg-grey p-4 d-block mx-auto">
             <form #form="ngForm" (ngSubmit)="form.valid && submit(form)" class="text-center">
                 <h2 class="h2 login-text">{{isSignInForm ? "Sign In" : "Sign Up"}}</h2>
+                <p class="text-muted text-center">Join our community to search and explore best pictures present on internet</p>
                 <div *ngIf="!isSubmitted" class="w-100">
                     <div class="">
                         <input *ngIf="!isSignInForm" type="text" placeholder="* Enter name" name="name" ngModel required>

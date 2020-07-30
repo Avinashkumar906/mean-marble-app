@@ -18,7 +18,7 @@
             <div *ngIf="!isUploading" class="col-12">
                 <form class="upload-form" [formGroup]="imageForm" (ngSubmit)="imageForm.valid && submit()">
                     <input type="file" #fileHandler (change)="handleFileInput($event,previewContainer)" hidden multiple/>
-                    <div class="row">
+                    <div *ngIf="!id" class="row">
                         <div class="col-12">
                             <div class="form-group text-center preview">
                                 <div #previewContainer [ngClass]="{'preview-container' : (cover && cover.length != 0),'d-none' : (cover && cover.length == 0)}" ></div>
@@ -30,7 +30,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" formControlName="title" placeholder="Album title" #title ngModel/>
+                                <input type="text" class="form-control" formControlName="title" placeholder="Album title"/>
                                 <small class="text-muted" *ngIf='isValidTitle()'><em>Must be 6 character long</em></small>
                             </div>
                         </div>

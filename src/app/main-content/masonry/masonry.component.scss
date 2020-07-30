@@ -72,8 +72,15 @@
           line-height: 12px;
           padding: 10px;
           cursor: pointer;
+          span{
+            font-weight: bold;
+          }
           p{
             margin: 0;
+          }
+          p:hover{
+            font-weight: bold;
+            font-style: italic;
           }
         }
       }

@@ -16,8 +16,10 @@
                       <div class="date">
                             <p class="p">{{ image.day }} <sup>Th</sup> {{ image.month + ', ' + image.year }}</p>
                       </div>
-                      <div class="edit" *ngIf="isAdmin() || isUsersFile(image.profile)" (click)="delete(image,i)">
-                            <p class="p">Delete?</p>
+                      <div class="edit" *ngIf="isAdmin() || isUsersFile(image.profile)">
+                            <p class="p d-inline" (click)="delete(image,i)">Delete</p>
+                            <span> | </span>
+                            <p class="p d-inline" (click)="update(image)"> Update</p>
                       </div>
                   </div>
                   <div class="data">

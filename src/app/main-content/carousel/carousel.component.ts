@@ -20,11 +20,10 @@ export class CarouselComponent implements OnInit,OnDestroy{
   owlOption = { items: 1, dots: false, navigation: false, loop: true, autoplay: true }
 
   ngOnInit() {
-    this.myCarousel = this.albumService.getData()
+    this.myCarousel = _.takeRight(_.shuffle(this.albumService.getData()),10)
     this.subscription = this.albumService.changeDetection.subscribe(
       (data:Array<{}>) => {
         this.myCarousel = _.takeRight(_.shuffle(data),10)
-        console.log(this.myCarousel)
       },
       (err) => console.log(err)
     )
