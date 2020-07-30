@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpService } from '../service/http.service';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 import { AlbumService } from '../service/album.service';
 import { Subscription } from 'rxjs';
+import { AlertService } from '../service/alert.service';
 
 @Component({
   selector: 'app-upload',
@@ -17,7 +17,8 @@ export class UploadComponent implements OnInit {
     private formBuilder: FormBuilder,
     private httpService: HttpService,
     private modalService:NgxSmartModalService,
-    private albumService : AlbumService
+    private albumService : AlbumService,
+    private alertService:AlertService
   ) { }
 
   id:String|Boolean;
@@ -121,12 +122,12 @@ export class UploadComponent implements OnInit {
             this.albumService.updateMasonryData(result);
           }
           this.close()
-          alert("uploaded successfully!")
+            this.alertService.put({title:'Update',message:'Image uploaded successfully !'})
         }else{
-          alert('please upload a file!')
+          this.alertService.put({title:'Alert',message:'Please upload a file !'})
         }
       } catch (error) {
-        console.log(error)
+        this.alertService.put({title:'Error',message:`${error.error.message}`})
         this.close()
       }
     }
@@ -135,9 +136,12 @@ export class UploadComponent implements OnInit {
   updateSubmit(){
     this.httpService.patchMasonryImage(this.imageForm.value).subscribe(
       data=>{
-        console.log(data)
         this.albumService.patchedMasonryData(data)
         this.close()
+        this.alertService.put({title:'Update',message:'Image Updated successfully !'})
+      },
+      err=>{
+        this.alertService.put({title:'Error',message:`${err.error.message}`})
       }
     )
   }

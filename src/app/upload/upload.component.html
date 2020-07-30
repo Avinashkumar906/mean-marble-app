@@ -17,7 +17,7 @@
         <div class="row justify-content-md-center">
             <div *ngIf="!isUploading" class="col-12">
                 <form class="upload-form" [formGroup]="imageForm" (ngSubmit)="imageForm.valid && submit()">
-                    <input type="file" #fileHandler (change)="handleFileInput($event,previewContainer)" hidden multiple/>
+                    <input *ngIf="!id" type="file" #fileHandler (change)="handleFileInput($event,previewContainer)" hidden multiple/>
                     <div *ngIf="!id" class="row">
                         <div class="col-12">
                             <div class="form-group text-center preview">
