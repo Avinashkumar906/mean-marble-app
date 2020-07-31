@@ -90,11 +90,10 @@ export class MasonryComponent implements OnInit,OnDestroy {
 
   delete(image:any,index:number){
     this.spinnerService.show('mainSpinner')
+    const { _id } = image
     this.httpService.deleteMasonryImage(image).subscribe(
       (data)=>{
-          let sliceNumber  = (this.currentpage*this.numberOfItems)+index;
-          this.images.splice(sliceNumber,1);
-          this.albumService.putData(this.images)
+          this.albumService.deletedMasonryData(_id)
           this.spinnerService.hide('mainSpinner')
           this.alertService.put({title:`Updated`,message:`Image Deleted from database`})
         },
@@ -105,10 +104,18 @@ export class MasonryComponent implements OnInit,OnDestroy {
       );
   }
 
+  getPreviewUrl(url:string){
+    let array = _.split(url,'/')
+    array[array.length-2] = 'q_auto,w_600';
+    let previewUrl= _.join(array,'/')
+    return previewUrl;
+  }
+
   update(image:any){
     this.albumService.uploadMode(image._id);
     this.smartModalService.open('upload')
   }
+
   isLogged(){
     return this.authService.isAuthenticated()
   }

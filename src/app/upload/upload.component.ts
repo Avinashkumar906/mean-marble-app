@@ -23,7 +23,7 @@ export class UploadComponent implements OnInit {
 
   id:String|Boolean;
   imageForm:any = this.formBuilder.group({
-    _id:[''],
+    // _id:[''],
     alt:[''],
     url:[''],
     profile:[''],
@@ -134,11 +134,11 @@ export class UploadComponent implements OnInit {
   }
 
   updateSubmit(){
-    this.httpService.patchMasonryImage(this.imageForm.value).subscribe(
+    this.httpService.patchMasonryImage(this.imageForm.value,this.id).subscribe(
       data=>{
         this.albumService.patchedMasonryData(data)
-        this.close()
         this.alertService.put({title:'Update',message:'Image Updated successfully !'})
+        this.close()
       },
       err=>{
         this.alertService.put({title:'Error',message:`${err.error.message}`})

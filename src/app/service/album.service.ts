@@ -24,14 +24,17 @@ export class AlbumService {
   }
 
   updateMasonryData(data){
-    this.masonryData.push(data)
+    this.masonryData.splice(0,0,data)
     this.changeDetection.next(this.masonryData);
   }
 
+  deletedMasonryData(_id){
+    _.pullAt(this.masonryData,_.findIndex(this.masonryData,{'_id':_id}))
+    this.changeDetection.next(this.masonryData)
+  }
+
   patchedMasonryData(data){
-    let indexToUpdate = _.findIndex(this.masonryData,{'_id':data._id})
-    this.masonryData[indexToUpdate] = data;
-    console.log(this.masonryData[indexToUpdate])
+    this.masonryData[_.findIndex(this.masonryData,{'_id':data._id})] = data;
     this.changeDetection.next(this.masonryData)
   }
 

@@ -11,7 +11,7 @@
       <div class="card-columns px-4" >
           <div class="custom-card card" *ngFor="let image of paginationItems;let i = index" data-aos="fade-in">
               <div class="wrapper">
-                  <img (click)="openLightbox(i)" class="img-fluid" [src]="image.url" [alt]="image.alt">
+                  <img (click)="openLightbox(i)" class="img-fluid" [src]="getPreviewUrl(image.url)" [alt]="image.alt">
                   <div class="header">
                       <div class="date">
                             <p class="p">{{ image.day }} <sup>Th</sup> {{ image.month + ', ' + image.year }}</p>

@@ -27,21 +27,6 @@ export class HttpService {
     return this.http.get(`${environment.apiHostName}/image?id=${id}`)
   }
 
-  // get image Data for album component
-  getAlbums(){
-    this.spinnerService.show('mainSpinner')
-    this.http.get(`${environment.apiHostName}/albums?filter=month`).subscribe(
-      (data)=>{
-        
-        this.spinnerService.hide('mainSpinner')
-      },
-      (err)=>{
-        this.spinnerService.hide('mainSpinner')
-        alert(err.message)
-      }
-    );
-  }
-
   // Delete image from masonry component
   deleteMasonryImage(image:any){
     // this.spinnerService.show('mainSpinner')
@@ -53,8 +38,8 @@ export class HttpService {
     return this.http.post(`${environment.apiHostName}/image`, form)
   }
 
-  patchMasonryImage(form){
-    return this.http.patch(`${environment.apiHostName}/image`, form)
+  patchMasonryImage(form,id){
+    return this.http.patch(`${environment.apiHostName}/image/?id=${id}`, form)
   }
 
   // Sending mail to avinashkumar906@gmail.com
