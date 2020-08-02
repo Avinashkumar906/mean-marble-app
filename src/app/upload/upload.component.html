@@ -3,11 +3,11 @@
         <div class="col p-0">
             <h1 class="h1" data-aos="fade-left">
                 <span *ngIf="!isUploading">
-                    Upload
+                    {{ id ? 'Update' : 'Upload' }}
                     <br />&nbsp;&nbsp;Form.
                 </span>
                 <span *ngIf="isUploading">
-                    Uploading...
+                    {{ id ? 'Updating...' : 'Uploading...' }}
                     <br />&nbsp;&nbsp;{{uploadCount}}
                 </span>
             </h1>
