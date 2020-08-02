@@ -19,7 +19,8 @@ export class MasonryComponent implements OnInit,OnDestroy {
   images:Array<{}>;
   paginationItems:Array<{}> = [];
   currentpage:number = 0;
-  numberOfItems:number = 10;
+  numberOfItems:number = 12;
+  user:any;
   subscription = new Subscription;
   
   constructor(
@@ -40,6 +41,9 @@ export class MasonryComponent implements OnInit,OnDestroy {
         this.images = data;
         this.fillPaginationArray()
       }
+    )
+    this.authService.userchanged.subscribe(
+      user=>this.user = user
     )
   }
 
@@ -104,25 +108,6 @@ export class MasonryComponent implements OnInit,OnDestroy {
       );
   }
 
-  getPreviewUrl(url:string){
-    let array = _.split(url,'/')
-    array[array.length-2] = 'q_auto,f_auto,w_600';
-    let previewUrl= _.join(array,'/')
-    return previewUrl;
-  }
-
-  isLikedAndHearted(data:Array<String>){
-    if(this.authService.isAuthenticated()){
-      let userId = JSON.parse(localStorage.getItem('user'))._id;
-        let result = _.find(data,(id:String)=>{
-          return id === userId ? true : false;
-        })
-      return result;
-    }else{
-      return false;
-    }
-  }
-
   like(id){
     if(this.authService.isAuthenticated()){
       let userId = JSON.parse(localStorage.getItem('user'))._id;
@@ -160,18 +145,6 @@ export class MasonryComponent implements OnInit,OnDestroy {
   update(image:any){
     this.albumService.uploadMode(image._id);
     this.smartModalService.open('upload')
-  }
-
-  isLogged(){
-    return this.authService.isAuthenticated()
-  }
-
-  isAdmin(){
-    return this.authService.isAdmin()
-  }
-
-  isUsersFile(id?:string){
-    return this.authService.isUsersFile(id)
   }
 
   ngOnDestroy(){

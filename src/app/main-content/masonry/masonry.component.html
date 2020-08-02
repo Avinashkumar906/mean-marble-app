@@ -11,12 +11,12 @@
       <div class="card-columns px-4" >
           <div class="custom-card card" *ngFor="let image of paginationItems;let i = index" data-aos="fade-in">
               <div class="wrapper">
-                  <img (click)="openLightbox(i)" class="img-fluid" [src]="image.url | previewUrl" [alt]="image.alt">
+                  <img (click)="openLightbox(i)" class="img-fluid" [src]="image.url | previewUrl:'src'" [alt]="image.alt">
                   <div class="header">
                       <div class="date">
                             <p class="p">{{ image.day }} <sup>Th</sup> {{ image.month + ', ' + image.year }}</p>
                       </div>
-                      <div class="edit" *ngIf="isAdmin() || isUsersFile(image.profile)">
+                      <div class="edit" *ngIf="user && (user.role == 'admin' || image.profile == user._id)">
                             <p class="p d-inline" (click)="delete(image,i)">Delete</p>
                             <span> | </span>
                             <p class="p d-inline" (click)="update(image)"> Update</p>

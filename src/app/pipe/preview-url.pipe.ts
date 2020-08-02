@@ -6,7 +6,7 @@ import _ from 'lodash'
 })
 export class PreviewUrlPipe implements PipeTransform {
 
-  transform(value: any, mode:string): any {
+  transform(value: any, mode?:string): any {
     let url;
     let array = _.split(value,'/');
     if(mode === 'back'){

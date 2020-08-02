@@ -14,22 +14,25 @@ export class AlertComponent implements OnInit {
   ) { }
 
   alert:Array<{}> = [];
+  temtAlert:Array<{}> = [];
   
   ngOnInit() {
     this.alertService.alertchanged.subscribe(
       (data:any)=>{
         data.time = `${new Date().toLocaleString('en-US', { hour: 'numeric',minute:'numeric', hour12: true })}`
-        this.alert.push(data)
+        this.fillTemp(data)
       }
     )
   }
 
   dismissAlert(index:number){
     _.pullAt(this.alert,index)
+    this.temtAlert = _.take(this.alert,2)
   }
 
-  getAlerts(){
-    return _.take(this.alert,2)
+  fillTemp(data){
+    this.alert.push(data)
+    this.temtAlert = _.take(this.alert,2)
   }
 
 }
