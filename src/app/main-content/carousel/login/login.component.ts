@@ -33,6 +33,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("token",response.token.toString())
             localStorage.setItem("user",JSON.stringify(response.user))
             this.isSubmitted = false;
+            this.authService.userchanged.next(response.user)
             this.modalService.getModal('login').close()
             this.alertService.put({title:`Logged In`,message:`Welcome ${response.user.name} !`})
           }

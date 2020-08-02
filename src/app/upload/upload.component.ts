@@ -81,30 +81,6 @@ export class UploadComponent implements OnInit {
     }
   }
 
-  isValidTitle(){
-    return (!this.imageForm.controls.title.valid && (this.imageForm.controls.title.dirty || this.imageForm.controls.title.touched));
-  }
-  isValidPlace(){
-    return (!this.imageForm.controls.place.valid && (this.imageForm.controls.place.dirty || this.imageForm.controls.place.touched));
-  }
-  isValidGroup(){
-    return (!this.imageForm.controls.group.valid && (this.imageForm.controls.group.dirty || this.imageForm.controls.group.touched));
-  }
-  isValidTags(){
-    return (!this.imageForm.controls.tags.valid && (this.imageForm.controls.tags.dirty || this.imageForm.controls.tags.touched));
-  }
-  isValidMore(){
-    return (!this.imageForm.controls.more.valid && (this.imageForm.controls.more.dirty || this.imageForm.controls.more.touched));
-  }
-  isValidAuthor(){
-    return (!this.imageForm.controls.author.valid && (this.imageForm.controls.author.dirty || this.imageForm.controls.author.touched));
-  }
-  isValidPrivate(){
-    return (!this.imageForm.controls.private.valid && (this.imageForm.controls.private.dirty || this.imageForm.controls.private.touched));
-  }
-  isValidDescription(){
-    return (!this.imageForm.controls.description.valid && (this.imageForm.controls.description.dirty || this.imageForm.controls.description.touched));
-  }
   async submit(){
     if(this.id){
       this.updateSubmit()

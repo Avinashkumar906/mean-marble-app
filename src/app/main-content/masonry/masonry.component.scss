@@ -72,10 +72,11 @@
         }
         p{
           margin: 0;
+          display: inline-block;
         }
         p:hover{
           font-weight: bold;
-          font-style: italic;
+          transform: scale(1.1);
         }
       }
     }
@@ -112,6 +113,14 @@
           text-align: center;
           span{
             margin: 0 10px;
+            cursor: pointer;
+            display: inline-block;
+          }
+          span.active {
+            color:  #ffffff80;
+          }
+          span:hover{
+            transform: scale(1.1);
           }
         }
         .button {

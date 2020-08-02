@@ -47,4 +47,13 @@ export class HttpService {
     return this.http.post(`${environment.apiHostName}/mail`,form)
   }
 
+  likeImage(userid,imageid){
+    // Like and dislike Api
+    return this.http.get(`${environment.apiHostName}/likeimage/?userid=${userid}&imageid=${imageid}`);
+  }
+
+  heartImage(userid,imageid){
+    // heart and disheart Api
+    return this.http.get(`${environment.apiHostName}/heartimage/?userid=${userid}&imageid=${imageid}`);
+  }
 }

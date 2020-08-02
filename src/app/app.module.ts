@@ -29,6 +29,8 @@ import { AuthService } from './service/auth.service';
 import { AlertService } from './service/alert.service';
 import { AlertComponent } from './alert/alert.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
+import { UsersFilePipe } from './pipe/users-file.pipe';
+import { PreviewUrlPipe } from './pipe/preview-url.pipe';
 
 // import 'hammerjs';
 
@@ -46,7 +48,9 @@ import { ErrorpageComponent } from './errorpage/errorpage.component';
     LoginComponent,
     UploadComponent,
     AlertComponent,
-    ErrorpageComponent
+    ErrorpageComponent,
+    UsersFilePipe,
+    PreviewUrlPipe
   ],
   imports: [
     BrowserModule,

@@ -11,7 +11,7 @@
       <div class="card-columns px-4" >
           <div class="custom-card card" *ngFor="let image of paginationItems;let i = index" data-aos="fade-in">
               <div class="wrapper">
-                  <img (click)="openLightbox(i)" class="img-fluid" [src]="getPreviewUrl(image.url)" [alt]="image.alt">
+                  <img (click)="openLightbox(i)" class="img-fluid" [src]="image.url | previewUrl" [alt]="image.alt">
                   <div class="header">
                       <div class="date">
                             <p class="p">{{ image.day }} <sup>Th</sup> {{ image.month + ', ' + image.year }}</p>
@@ -30,11 +30,11 @@
                           </h1>
                           <p class="text">{{image.description}}</p>
                           <div class="icon-container">
-                            <span>1 <i class="fas fa-heart"></i></span>
-                            <span>2 <i class="fas fa-thumbs-up"></i></span>
-                            <span>1 <i class="fas fa-download"></i></span>
+                            <span (click)="heart(image._id)" [ngClass]="{'active': image.heart | usersFile}">{{image.heart.length}} <i class="fas fa-heart"></i></span>
+                            <span (click)="downloadUrl(image.url)"><i class="fas fa-download"></i></span>
+                            <span (click)="like(image._id)" [ngClass]="{'active': image.likes | usersFile}">{{image.likes.length}} <i class="fas fa-thumbs-up"></i></span>
                           </div>
-                          <a class="button">watch more</a>
+                          <a class="button py-1">Comments</a>
                       </div>
                   </div>
               </div>

@@ -106,9 +106,55 @@ export class MasonryComponent implements OnInit,OnDestroy {
 
   getPreviewUrl(url:string){
     let array = _.split(url,'/')
-    array[array.length-2] = 'q_auto,w_600';
+    array[array.length-2] = 'q_auto,f_auto,w_600';
     let previewUrl= _.join(array,'/')
     return previewUrl;
+  }
+
+  isLikedAndHearted(data:Array<String>){
+    if(this.authService.isAuthenticated()){
+      let userId = JSON.parse(localStorage.getItem('user'))._id;
+        let result = _.find(data,(id:String)=>{
+          return id === userId ? true : false;
+        })
+      return result;
+    }else{
+      return false;
+    }
+  }
+
+  like(id){
+    if(this.authService.isAuthenticated()){
+      let userId = JSON.parse(localStorage.getItem('user'))._id;
+      this.httpService.likeImage(userId,id).subscribe(
+        data=>this.albumService.patchedMasonryData(data),
+        err=>this.alertService.put({title:`Error`,message:`${err.error.message}`})
+      )
+    }else{
+      this.smartModalService.getModal('login').open()
+    }
+  }
+
+  heart(id){
+    if(this.authService.isAuthenticated()){
+      let userId = JSON.parse(localStorage.getItem('user'))._id;
+      this.httpService.heartImage(userId,id).subscribe(
+        data=>this.albumService.patchedMasonryData(data),
+        err=>this.alertService.put({title:`Error`,message:`${err.error.message}`})
+      )
+    } else {
+      this.smartModalService.getModal('login').open()
+    }
+  }
+
+  downloadUrl(url){
+    let array = _.split(url,'/')
+    const fileName = array[array.length-1];
+    let a = document.createElement('a')
+    a.href = url
+    a.target = '_blank'
+    a.download = fileName;
+    a.click();
   }
 
   update(image:any){

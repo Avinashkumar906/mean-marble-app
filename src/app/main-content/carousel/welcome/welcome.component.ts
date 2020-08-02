@@ -18,9 +18,12 @@ export class WelcomeComponent implements OnInit {
     private albumService: AlbumService
   ) { }
 
-  user:{name:string};
+  user:any;
+  
   ngOnInit() {
-    this.user = {name:'Sandy'}
+    this.authService.userchanged.subscribe(
+      user=>this.user = user
+    )
   }
 
   isLogged(){
