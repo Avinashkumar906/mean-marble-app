@@ -15,7 +15,11 @@ export class PreviewUrlPipe implements PipeTransform {
       array[array.length-2] = `c_fill,q_auto,f_auto,w_${w},h_${h},g_face`;
       let previewUrl= _.join(array,'/')
       url = `url(${previewUrl})`;
-    } else {
+    } else if(mode === 'custom'){
+      array[array.length-2] = 'q_auto,f_auto,w_600';
+      let previewUrl= _.join(array,'/')
+      url = `url(${previewUrl})`;
+    } else{
       array[array.length-2] = 'q_auto,f_auto,w_600';
       url = _.join(array,'/');
     }

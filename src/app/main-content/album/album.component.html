@@ -11,7 +11,7 @@
       <owl-carousel [options]="owlOption" [items]="unique" [carouselClasses]="['owl-theme','sliding']">
         <div class="w-100" *ngFor="let item of unique;let i = index" data-aos="fade-in">
           <div class="card">
-            <div class="wrapper"  [style.backgroundImage]="'url(' + item.url + ')'">
+            <div class="wrapper"  [style.backgroundImage]="item.url | previewUrl:'custom'">
               <div class="date">
                 <span class="day">{{item.day}}</span>
                 <span class="month">{{getSubstring(item.month)}}</span>

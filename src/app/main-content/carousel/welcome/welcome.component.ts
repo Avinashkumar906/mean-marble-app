@@ -18,7 +18,7 @@ export class WelcomeComponent implements OnInit {
     private albumService: AlbumService
   ) { }
 
-  user:any;
+  user:any = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
   
   ngOnInit() {
     this.authService.userchanged.subscribe(

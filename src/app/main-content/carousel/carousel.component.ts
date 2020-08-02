@@ -32,13 +32,5 @@ export class CarouselComponent implements OnInit,OnDestroy{
   ngOnDestroy(){
     this.subscription.unsubscribe()
   }
-
-  getPreviwUrl(url){
-    let array = _.split(url,'/');
-    let w = window.innerWidth;
-    let h = window.innerHeight;
-    array[array.length-2] = `c_fill,q_auto,f_auto,w_${w},h_${h},g_face`;
-    let previewUrl= _.join(array,'/')
-    return previewUrl;
-  }
+  
 }

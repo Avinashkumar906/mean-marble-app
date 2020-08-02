@@ -20,8 +20,8 @@ export class MasonryComponent implements OnInit,OnDestroy {
   paginationItems:Array<{}> = [];
   currentpage:number = 0;
   numberOfItems:number = 12;
-  user:any;
   subscription = new Subscription;
+  user:any = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
   
   constructor(
       private albumService: AlbumService,
