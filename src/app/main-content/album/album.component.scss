@@ -5,11 +5,8 @@ $black: #000;
 $open-sans: 'Open Sans', sans-serif;
 .container-fluid{
   padding: 4rem 0;
-  background:url('/assets/img/masonry.jpg');
-  background-position: center;
-  background-size: cover;
   min-height: 105vh;
-  background-repeat: no-repeat;
+  background: whitesmoke;
 }
 .btn{
   border: 1px solid #dee2e6;

@@ -41,11 +41,11 @@ export class AlbumComponent implements OnInit,OnDestroy {
     ) { }
 
   ngOnInit() {
-    this.unique = _.uniqBy(this.albums,'group');
+    this.unique = _.uniqBy(this.albums,'month');
     this.subscription = this.albumService.changeDetection.subscribe(
       (data:Array<any>)=>{
         this.albums=data
-        this.unique = _.uniqBy(this.albums,'group');
+        this.unique = _.uniqBy(this.albums,'month');
       },
       error=>console.log(error)
     )
