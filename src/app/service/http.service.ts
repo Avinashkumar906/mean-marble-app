@@ -44,7 +44,7 @@ export class HttpService {
 
   // Sending mail to avinashkumar906@gmail.com
   sendMessage(form){
-    return this.http.post(`${environment.apiHostName}/mail`,form)
+    return this.http.post(`${environment.apiHostName}/mailservice`,form)
   }
 
   likeImage(userid,imageid){

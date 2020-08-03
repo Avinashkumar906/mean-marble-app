@@ -30,6 +30,9 @@ h1 {
       border-radius:0;
       vertical-align:middle;
     }
+    .form-control.ng-dirty.ng-invalid.ng-touched{
+      border:solid 1px red;
+    }
     .form-control:focus{
       border-color:#B7A389;
       -webkit-box-shadow:none;

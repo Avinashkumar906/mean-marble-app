@@ -109,10 +109,10 @@ export class UploadComponent implements OnInit {
   }
 
   updateSubmit(){
+    this.isUploading = true;
+    this.uploadCount = `1 of 1`;
     this.httpService.patchMasonryImage(this.imageForm.value,this.id).subscribe(
       data=>{
-        this.isUploading = true;
-        this.uploadCount = `1 of 1`;
         this.albumService.patchedMasonryData(data)
         this.alertService.put({title:'Update',message:'Image Updated successfully !'})
         this.close()
