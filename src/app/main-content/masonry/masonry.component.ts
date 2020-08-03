@@ -17,9 +17,9 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 export class MasonryComponent implements OnInit,OnDestroy {
 
   images:Array<{}>;
-  paginationItems:Array<{}> = [];
   currentpage:number = 0;
   numberOfItems:number = 12;
+  searchKey:string = '';
   subscription = new Subscription;
   user:any = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
   
@@ -35,16 +35,16 @@ export class MasonryComponent implements OnInit,OnDestroy {
 
   ngOnInit() {
     this.images = this.albumService.getData()
-    this.fillPaginationArray()
     this.subscription = this.albumService.changeDetection.subscribe(
-      (data:Array<{}>)=>{
-        this.images = data;
-        this.fillPaginationArray()
-      }
+      (data:Array<{}>)=>this.images = data
     )
     this.authService.userchanged.subscribe(
       user=>this.user = user
     )
+  }
+
+  search(event){
+    this.searchKey = event.target.value
   }
 
   openLightbox(index: number): void {
@@ -60,34 +60,29 @@ export class MasonryComponent implements OnInit,OnDestroy {
     this.lightbox.open(imgArray, newIndex, { wrapAround: true, alwaysShowNavOnTouchDevices:true, centerVertically:true, disableScrolling:true });
   }
 
-  fillPaginationArray(){
-    let chunked = _.chunk(this.images,this.numberOfItems)
-    this.paginationItems = chunked[this.currentpage];
-  }
-
   firstPage(element){
-    this.currentpage = 0;
-    this.fillPaginationArray()
-    element.scrollIntoView({ behavior: 'smooth' });
+    if(this.currentpage != 0){
+      this.currentpage = 0;
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
   lastPage(element){
-    this.currentpage = Math.ceil(this.images.length/this.numberOfItems)-1;
-    this.fillPaginationArray()
-    element.scrollIntoView({ behavior: 'smooth' });
+    if(this.currentpage != Math.ceil(this.images.length/this.numberOfItems)-1){
+      this.currentpage = Math.ceil(this.images.length/this.numberOfItems)-1;
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
   nextPage(element){
     if(this.currentpage < Math.ceil(this.images.length/this.numberOfItems)-1){
       ++this.currentpage;
-      this.fillPaginationArray()
       element.scrollIntoView({ behavior: 'smooth' });
     }
   }
   prevPage(element){
     if(this.currentpage > 0){
       --this.currentpage;
-      this.fillPaginationArray()  
       element.scrollIntoView({ behavior: 'smooth' });
     }
   }

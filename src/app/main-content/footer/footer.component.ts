@@ -30,7 +30,7 @@ export class FooterComponent implements OnInit {
       to: "avinashkumar906@gmail.com",
       from: form.value.email,
       subject: `Greeting from MARBLE`,
-      text: ` <h2>Hi Sandy,</h2><br/><h2>${form.value.message}</h2><br/><h4>Regards,</h4><h4>${form.value.name}</h4><h4>${form.value.phone}</h4><h4>${form.value.website}</h4>`,
+      html: ` <h2>Hi Sandy,</h2><br/><h2>${form.value.message}</h2><br/><h4>Regards,</h4><h4>${form.value.name}</h4><h4>${form.value.phone}</h4><h4>${form.value.website}</h4>`,
     })
     this.httpService.sendMessage(msg).subscribe(
       (result) => {

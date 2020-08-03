@@ -11,8 +11,8 @@ import _ from 'lodash'
 })
 export class AlbumComponent implements OnInit,OnDestroy {
 
-  albums:Array<{}> = this.albumService.getData()
-  unique:Array<{}>;
+  albums:Array<any> = this.albumService.getData()
+  unique:Array<any>;
   subscription = new Subscription
   owlOption =
       {
@@ -41,20 +41,14 @@ export class AlbumComponent implements OnInit,OnDestroy {
     ) { }
 
   ngOnInit() {
-    this.unique = _.uniqBy(this.albums,'month');
+    this.unique = _.uniqBy(this.albums,'group');
     this.subscription = this.albumService.changeDetection.subscribe(
-      (data:Array<{}>)=>{
+      (data:Array<any>)=>{
         this.albums=data
-        this.unique = _.uniqBy(this.albums,'month');
+        this.unique = _.uniqBy(this.albums,'group');
       },
       error=>console.log(error)
     )
-  }
-
-  groupData(){
-    console.log('loop')
-    console.log(_.uniqBy(this.albums,'month'))
-
   }
 
   openLightbox(filter){

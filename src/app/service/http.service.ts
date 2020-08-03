@@ -56,4 +56,8 @@ export class HttpService {
     // heart and disheart Api
     return this.http.get(`${environment.apiHostName}/heartimage/?userid=${userid}&imageid=${imageid}`);
   }
+
+  getPrivate(){
+    return this.http.get(`${environment.apiHostName}/private`);
+  }
 }

@@ -31,6 +31,8 @@ import { AlertComponent } from './alert/alert.component';
 import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { UsersFilePipe } from './pipe/users-file.pipe';
 import { PreviewUrlPipe } from './pipe/preview-url.pipe';
+import { PaginationPipe } from './pipe/pagination.pipe';
+import { FilterPipe } from './pipe/filter.pipe';
 
 // import 'hammerjs';
 
@@ -50,7 +52,9 @@ import { PreviewUrlPipe } from './pipe/preview-url.pipe';
     AlertComponent,
     ErrorpageComponent,
     UsersFilePipe,
-    PreviewUrlPipe
+    PreviewUrlPipe,
+    PaginationPipe,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
