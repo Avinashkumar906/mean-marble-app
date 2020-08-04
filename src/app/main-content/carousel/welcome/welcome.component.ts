@@ -33,11 +33,6 @@ export class WelcomeComponent implements OnInit {
     return this.authService.isAuthenticated()
   }
 
-  logout(){
-    this.authService.logout()
-    this.alertService.put({title:`Logged Out`,message:`Thanks for visiting us !`,class:'alert-info'})
-  }
-
   openUploader(){
     if(this.isLogged()){
       this.albumService.uploadMode(false);

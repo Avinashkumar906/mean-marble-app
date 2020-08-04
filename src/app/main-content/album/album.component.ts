@@ -11,7 +11,7 @@ import _ from 'lodash'
 })
 export class AlbumComponent implements OnInit,OnDestroy {
 
-  albums:Array<any> = this.albumService.getData()
+  albums:Array<any> = _.cloneDeep(this.albumService.getData())
   unique:Array<any>;
   subscription = new Subscription
   owlOption =
@@ -44,7 +44,7 @@ export class AlbumComponent implements OnInit,OnDestroy {
     this.unique = _.uniqBy(this.albums,'month');
     this.subscription = this.albumService.changeDetection.subscribe(
       (data:Array<any>)=>{
-        this.albums=data
+        this.albums = _.cloneDeep(data);
         this.unique = _.uniqBy(this.albums,'month');
       },
       error=>console.log(error)

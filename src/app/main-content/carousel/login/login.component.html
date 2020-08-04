@@ -18,14 +18,14 @@
                         <div *ngIf="isSignInForm">
                             <button type="submit" class="symp-btn my-2 w-100 d-block" [disabled]="!form.valid">
                                 <i class="fas fa-sign-in-alt"></i>
-                                <span class="d-inline-block mx-2">Signin</span> 
+                                <span class="d-inline-block mx-2">Sign in</span> 
                             </button>
                             <p class="btn" (click)="toggleForm()">Click here for Sign up</p> 
                         </div>
                         <div *ngIf="!isSignInForm">
                             <button type="submit" class="symp-btn my-2 w-100 d-block" [disabled]="!form.valid">
                                 <i class="fas fa-sign"></i> 
-                                <span class="d-inline-block mx-2">Signup</span>
+                                <span class="d-inline-block mx-2">Sign up</span>
                             </button>
                             <p class="btn" (click)="toggleForm()">Click here for Sign in</p> 
                         </div>

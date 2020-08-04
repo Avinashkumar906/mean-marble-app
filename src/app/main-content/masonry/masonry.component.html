@@ -15,8 +15,8 @@
         </div>
     </div>
     <div class="w-100">
-      <div class="card-columns px-4" data-aos="fade-in">
-          <div class="custom-card card" *ngFor="let image of images | filter:searchKey | pagination:currentpage:numberOfItems ; let i = index" >
+      <div class="card-columns px-4">
+          <div class="custom-card card" *ngFor="let image of images | filter:searchKey | pagination:currentpage:numberOfItems ; let i = index" data-aos="fade-in" >
               <div class="wrapper">
                   <img (click)="openLightbox(i)" class="img-fluid" [src]="image.url | previewUrl:'src'" [alt]="image.alt">
                   <div class="header">

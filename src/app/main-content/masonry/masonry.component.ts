@@ -16,7 +16,7 @@ import { NgxSmartModalService } from 'ngx-smart-modal';
 })
 export class MasonryComponent implements OnInit,OnDestroy {
 
-  images:Array<{}>;
+  images:Array<{}> = this.albumService.getData();
   currentpage:number = 0;
   numberOfItems:number = 12;
   searchKey:string = '';
@@ -34,9 +34,8 @@ export class MasonryComponent implements OnInit,OnDestroy {
     ) { }
 
   ngOnInit() {
-    this.images = this.albumService.getData()
     this.subscription = this.albumService.changeDetection.subscribe(
-      (data:Array<{}>)=>this.images = data
+      data=>this.images = _.cloneDeep(data)
     )
     this.authService.userchanged.subscribe(
       user=>this.user = user
