@@ -6,13 +6,13 @@
                 <p class="text-muted text-center">Join our community to search and explore best pictures present on internet</p>
                 <div *ngIf="!isSubmitted" class="w-100">
                     <div class="">
-                        <input *ngIf="!isSignInForm" type="text" placeholder="* Enter name" name="name" ngModel required>
+                        <input *ngIf="!isSignInForm" type="text" placeholder="Enter name" name="name" ngModel required>
                     </div>
                     <div class="">
-                        <input type="text" placeholder="* Enter e-mail" name="email" ngModel required>
+                        <input type="text" placeholder="Enter e-mail" name="email" ngModel required>
                     </div>
                     <div class="">
-                        <input type="password" placeholder="* Enter password" name="password" ngModel required>
+                        <input type="password" placeholder="Enter password" name="password" ngModel required>
                     </div>
                     <div class="my-2">
                         <div *ngIf="isSignInForm">
@@ -20,14 +20,14 @@
                                 <i class="fas fa-sign-in-alt"></i>
                                 <span class="d-inline-block mx-2">Sign in</span> 
                             </button>
-                            <p class="btn" (click)="toggleForm()">Click here for Sign up</p> 
+                            <small class="btn" (click)="toggleForm()">Click here for Sign up</small> 
                         </div>
                         <div *ngIf="!isSignInForm">
                             <button type="submit" class="symp-btn my-2 w-100 d-block" [disabled]="!form.valid">
                                 <i class="fas fa-sign"></i> 
                                 <span class="d-inline-block mx-2">Sign up</span>
                             </button>
-                            <p class="btn" (click)="toggleForm()">Click here for Sign in</p> 
+                            <small class="btn" (click)="toggleForm()">Click here for Sign in</small> 
                         </div>
                     </div>
                 </div>

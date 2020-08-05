@@ -8,10 +8,12 @@
 }
 
 .form-control{
+  font-family: Lobster-bold;
   padding:10px;
   height:auto;
   max-width: 400px;
   margin: 0 auto;
+  letter-spacing: 2px;
   border:solid 1px #BBB;
   -webkit-box-shadow:none;
   -moz-box-shadow:none;
@@ -33,8 +35,9 @@
   color: rgba(0, 0, 0, 0.65);
   margin: 0 0 2rem 2rem;
   h1 {
-    font-family: 'Righteous';
+    font-family: 'Cookie';
     font-weight: 500;
+    letter-spacing: 2px;
   }
 }
 .btn{

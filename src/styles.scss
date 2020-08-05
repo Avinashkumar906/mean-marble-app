@@ -1,18 +1,44 @@
 /* You can add global styles to this file, and also import other style files */
-// @import url('https://fonts.googleapis.com/css?family=Calistoga|Odibee+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Abril+Fatface|Cute+Font|Gelasio|Righteous&display=swap');
 @import "~owl.carousel/dist/assets/owl.carousel.css";
 @import "~owl.carousel/dist/assets/owl.theme.default.css";
 @import "~ngx-smart-modal/ngx-smart-modal";
 @import "app/app.component";
 
-// font-family: 'Abril Fatface', cursive;
-// font-family: 'Righteous', cursive;
-// font-family: 'Cute Font', cursive;
-// font-family: 'Gelasio', serif;
+// font family inclusion
+@font-face{
+  font-family: Cookie;
+  src: url(./assets/fonts/Cookie/Cookie-Regular.ttf);
+}
+@font-face{
+  font-family: poiret;
+  src: url(./assets/fonts/Poiret_One/PoiretOne-Regular.ttf);
+}
+@font-face{
+  font-family: Lobster;
+  src: url(./assets/fonts/Lobster_Two/LobsterTwo-Regular.ttf);
+}
+@font-face{
+  font-family: Lobster-bold;
+  src: url(./assets/fonts/Lobster_Two/LobsterTwo-Bold.ttf);
+}
+@font-face{
+  font-family: Lobster-bold-italic;
+  src: url(./assets/fonts/Lobster_Two/LobsterTwo-BoldItalic.ttf);
+}
+@font-face{
+  font-family: Lobster-italic;
+  src: url(./assets/fonts/Lobster_Two/LobsterTwo-Italic.ttf);
+}
+@font-face{
+  font-family: Monoton;
+  src: url(./assets/fonts/Monoton/Monoton-Regular.ttf);
+}
+// font family inclusion --x
 
+// universal css
 a {
   text-decoration: none!important;
+  cursor: pointer!important;
 }
 
 html,body{
@@ -20,8 +46,52 @@ html,body{
     margin: 0;
     width: 100%;
     height: 100%;
-    font-family: 'Gelasio', serif;
+    font-family: 'Cookie', serif;
 }
+h1,h2,h3,h4,h5,h6{
+  font-family: 'Cookie',sans-serif;
+}
+p{
+  font-family: 'Lobster-italic',sans-serif;
+  letter-spacing: 2px;
+}
+.symp-btn{
+  font-family: 'Lobster';
+  letter-spacing: 2px;
+	display:inline-block;
+	*display:inline;
+	*zoom:1;
+	padding:12px 22px;
+	background-color: rgba(255, 255, 255, .5);
+	color:#FFF;
+	-webkit-transition:all .3s ease;
+	-moz-transition:all .3s ease;
+	transition:all .3s ease;
+	border:none;
+  &:hover{
+    background-color: rgba(255, 255, 255, .8);
+    color:#FFF;
+  }
+  &:disabled{
+    cursor: not-allowed!important;
+	  background-color: rgba(255, 255, 255, .5);
+  }
+}
+.symp-btn.link-btn{
+	background:transparent;
+	color:#999;
+}
+.symp-btn.link-btn > i{
+	margin-right:8px;
+}
+.symp-btn.link-btn:hover{
+	color:#333;
+	background:transparent;
+}
+// universal css --x
+
+
+// lightbox,modal css fix and carousel css fix
 .lb-outerContainer{
   background: none!important;
 }
@@ -40,12 +110,7 @@ html,body{
 .bg-custom{
     background-color: rgba(211, 211, 211, 0.5);
 }
-h1,h2,h3,h4,h5,h6{
-  font-family: 'Abril Fatface',sans-serif;
-}
-a{
-  cursor: pointer;
-}
+
 .owl-theme .owl-nav {
     display: flex;
     justify-content: space-between;
@@ -69,62 +134,11 @@ a{
       background: #454c49b5;
     }
 }
+
+// lightbox css fix and carousel css fix--x
+
 .shadow-dark{
   box-shadow: 0 5px 30px 10px rgba(0, 0, 0, 0.3);
-}
-
-.symp-btn{
-  cursor: pointer;
-	display:inline-block;
-	*display:inline;
-	*zoom:1;
-	padding:12px 22px;
-	background-color: rgba(255, 255, 255, .5);
-	color:#FFF;
-	-webkit-transition:all .3s ease;
-	-moz-transition:all .3s ease;
-	transition:all .3s ease;
-	border:none;
-  text-decoration:none !important;
-  &:hover{
-    background-color: rgba(255, 255, 255, .8);
-    color:#FFF;
-  }
-  &:disabled{
-    cursor: not-allowed!important;
-	  background-color: rgba(255, 255, 255, .5);
-  }
-}
-.symp-btn.link-btn{
-	background:transparent;
-	color:#999;
-}
-.symp-btn.link-btn > i{
-	margin-right:8px;
-}
-.symp-btn.link-btn:hover{
-	color:#333;
-	background:transparent;
-}
-
-.form-control{
-  padding:10px;
-  height:auto;
-  border:solid 1px #BBB;
-  -webkit-box-shadow:none;
-  -moz-box-shadow:none;
-  box-shadow:none;
-  border-radius:0;
-  vertical-align:middle;
-}
-.form-control:focus{
-  border-color:#B7A389;
-  -webkit-box-shadow:none;
-  -moz-box-shadow:none;
-  box-shadow:none;	
-}
-.form-group{
-  margin-bottom:25px;
 }
 
 .bg-lightgray{
@@ -137,7 +151,7 @@ a{
     padding: 10px 20px;
   }  
 }
-@media (max-width: 420px){
+@media (max-width: 500px){
   .symp-btn{
     font-size: 8px;
     padding: 8px 16px;

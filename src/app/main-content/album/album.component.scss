@@ -1,8 +1,7 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
 $bermuda: #77d7b9;
 $white: #fff;
 $black: #000;
-$open-sans: 'Open Sans', sans-serif;
+
 .container-fluid{
   padding: 4rem 0;
   min-height: 105vh;
@@ -17,15 +16,16 @@ $open-sans: 'Open Sans', sans-serif;
   color: rgba(0, 0, 0, 0.65);
   margin: 0 0 2rem 2rem;
   h1 {
-    font-family: 'Righteous';
+    font-family: 'Cookie';
     font-weight: 500;
+    letter-spacing: 2px;
   }
 }
 
 // Base styles
 .card {
     color: gray;
-    border: none;
+    border: 1px solid #f0f0f0;
     background: none;
     height: 100%;
     .content {
@@ -63,26 +63,6 @@ $open-sans: 'Open Sans', sans-serif;
       &::after {
         right: -10px;
       }
-    }
-  }
-  .menu-content {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    li {
-      display: inline-block;
-    }
-    a {
-      color: $white;
-    }
-    span {
-      position: absolute;
-      left: 50%;
-      top: 0;
-      font-size: 10px;
-      font-weight: 700;
-      font-family: 'Open Sans';
-      transform: translate(-50%, 0);
     }
   }
   .wrapper {

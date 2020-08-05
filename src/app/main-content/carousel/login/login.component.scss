@@ -21,7 +21,9 @@ $light: #e9e9e9;
 	width: 100%;
 	background-color: $light;
 	h2{
+		font-family: 'Lobster-bold';
 		margin: 20px 0 10px 0;
+		letter-spacing: 2px;
 	}
 	p{
 		width: 80%;
@@ -31,48 +33,34 @@ $light: #e9e9e9;
 	.login-text{
 		color: $dark;
 	}
+	small{
+		font-size: 12px;
+		font-family: 'Lobster-bold';
+		letter-spacing: 1px;
+	}
 }
 
-.login input[type=text]{
+.login input[type=text],
+.login input[type=password]{
 	width: 100%;
 	height: 40px;
 	background: transparent;
   	border: none;
 	color: $dark;
-	font-family: sans-serif;
+	font-family: 'Lobster-bold';
+	letter-spacing: 2px;
 	font-size: 16px;
 	font-weight: bold;
-	padding: 10px 0;
+	padding: 10px 10px;
 	margin: 10px 0;
 	border-bottom: 2px solid rgba(0,0,0,0.6);
 }
 
-.login input[type=password]{
-	width: 100%;
-	height: 40px;
-	background: transparent;
-	border: none;
-  	border-bottom: 2px solid rgba(0,0,0,0.6);
-	border-radius: 0;
-	color: $dark;
-	font-family: 'Exo', sans-serif;
-	font-size: 16px;
-	font-weight: bold;
-	padding: 10px 0;
-	margin: 10px 0;
-}
-
-.login input[type=text]:focus{
+.login input[type=text]:focus,
+.login input[type=password]:focus{
 	outline: none;
   	border-bottom: 2px solid rgba(22,22,22,1);
 }
-
-.login input[type=password]:focus{
-	outline: none;
-	border-bottom: 2px solid rgba(22,22,22,1);
-}
-
-
 
 ::-webkit-input-placeholder{
 	font-weight: bold;
@@ -82,4 +70,7 @@ $light: #e9e9e9;
 ::-moz-input-placeholder{
 	font-weight: bold;
 	color: rgba(22,22,22,0.8);
+}
+.symp-btn{
+	font-size: 1rem;
 }

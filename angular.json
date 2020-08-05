@@ -31,13 +31,15 @@
               "src/styles.scss",
               "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "./node_modules/bootstrap/dist/css/bootstrap.css",
-              "./node_modules/ngx-lightbox/lightbox.css"
+              "./node_modules/ngx-lightbox/lightbox.css",
+              "./node_modules/aos/dist/aos.css"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
               "./node_modules/@fortawesome/fontawesome-free/js/all.min.js",
               "./node_modules/bootstrap/dist/js/bootstrap.js",
-              "./node_modules/owl.carousel/dist/owl.carousel.js"
+              "./node_modules/owl.carousel/dist/owl.carousel.js",
+              "./node_modules/aos/dist/aos.js"
             ]
           },
           "configurations": {
