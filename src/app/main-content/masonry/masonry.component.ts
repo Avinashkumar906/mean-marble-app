@@ -5,7 +5,7 @@ import { AuthService } from '../../service/auth.service';
 import { HttpService } from '../../service/http.service'
 import { NgxSpinnerService } from 'ngx-spinner';
 import _ from 'lodash'
-import { Subscription } from 'rxjs';
+import { Subscription, from } from 'rxjs';
 import { AlertService } from 'src/app/service/alert.service';
 import { NgxSmartModalService } from 'ngx-smart-modal';
 
@@ -46,10 +46,12 @@ export class MasonryComponent implements OnInit,OnDestroy {
     this.searchKey = event.target.value
   }
 
-  openLightbox(index: number): void {
+  openLightbox(id: number): void {
     let imgArray = [];
-    let newIndex = (this.currentpage*this.numberOfItems) + index
-    this.images.forEach((obj:any)=> {
+    let newIndex = _.findIndex(this.images,{'_id':id})
+    _.filter(this.images,(o)=>{
+      return o.title.toLowerCase().includes(this.searchKey.toLowerCase()) || o.description.toLowerCase().includes(this.searchKey.toLowerCase()) || o.author.toLowerCase().includes(this.searchKey.toLowerCase())
+    }).forEach((obj:any)=> {
       imgArray.push({
         src : obj.url,
         caption : obj.description,
@@ -86,7 +88,7 @@ export class MasonryComponent implements OnInit,OnDestroy {
     }
   }
 
-  delete(image:any,index:number){
+  delete(image:any){
     this.spinnerService.show('mainSpinner')
     const { _id } = image
     this.httpService.deleteMasonryImage(image).subscribe(
