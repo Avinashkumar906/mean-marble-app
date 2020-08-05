@@ -48,10 +48,11 @@ export class MasonryComponent implements OnInit,OnDestroy {
 
   openLightbox(id: number): void {
     let imgArray = [];
-    let newIndex = _.findIndex(this.images,{'_id':id})
-    _.filter(this.images,(o)=>{
+    let tempArray= _.filter(this.images,(o)=>{
       return o.title.toLowerCase().includes(this.searchKey.toLowerCase()) || o.description.toLowerCase().includes(this.searchKey.toLowerCase()) || o.author.toLowerCase().includes(this.searchKey.toLowerCase())
-    }).forEach((obj:any)=> {
+    });
+    let newIndex = _.findIndex(tempArray,{'_id':id})
+    tempArray.forEach((obj:any)=> {
       imgArray.push({
         src : obj.url,
         caption : obj.description,
