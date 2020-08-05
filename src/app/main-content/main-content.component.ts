@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { AlbumService } from '../service/album.service';
-import { ScrollEvent } from 'ngx-scroll-event';
+
 
 @Component({
   selector: 'app-main-content',
