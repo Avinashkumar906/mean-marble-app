@@ -42,6 +42,46 @@ export class MasonryComponent implements OnInit,OnDestroy {
     )
   }
 
+  getTagged(){
+    this.httpService.getMyTags().subscribe(
+      data=>{
+        this.albumService.putData(data)
+        this.alertService.put({title:"Liked by me",message:"Viewing all photos tagged to me !"})
+      },
+      err=>this.alertService.put({title:"Error ",message:"Unable to fetch data. Try again"})
+    )
+  }
+
+  getLiked(){
+    this.httpService.getMyLiked().subscribe(
+      data=>{
+        this.albumService.putData(data)
+        this.alertService.put({title:"Liked by me",message:"Viewing all photos liked by me !"})
+      },
+      err=>this.alertService.put({title:"Error ",message:"Unable to fetch data. Try again"})
+    )
+  }
+
+  getPrivate(){
+    this.httpService.getMyPrivate().subscribe(
+      data=>{
+        this.albumService.putData(data)
+        this.alertService.put({title:"Liked by me",message:"Viewing my private photos !"})
+      },
+      err=>this.alertService.put({title:"Error ",message:"Unable to fetch data. Try again"})
+    )
+  }
+
+  getFavorite(){
+    this.httpService.getMyFavorite().subscribe(
+      data=>{
+        this.albumService.putData(data)
+        this.alertService.put({title:"Liked by me",message:"Viewing all my favorite pics !"})
+      },
+      err=>this.alertService.put({title:"Error ",message:"Unable to fetch data. Try again"})
+    )
+  }
+
   search(event){
     this.searchKey = event.target.value
   }

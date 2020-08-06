@@ -10,7 +10,13 @@
     <div class="w-100">
         <div class="px-4">
             <div class="form-group">
-                <input (keyup)="search($event)" class="form-control" type="text" name="Search" placeholder="Search" />
+                <input (keyup.enter)="search($event)" class="form-control" type="text" name="Search" placeholder="Search" />
+            </div>
+            <div class="py-1">
+                <span class="chip" (click)="getTagged()">#Tagged</span>
+                <span class="chip" (click)="getLiked()">#Liked</span>
+                <span class="chip" (click)="getFavorite()">#Favorite</span>
+                <span class="chip" (click)="getPrivate()">#Private</span>
             </div>
         </div>
     </div>
@@ -46,6 +52,9 @@
                   </div>
               </div>
           </div>
+      </div>
+      <div *ngIf="(images | filter:searchKey).length == 0"  class="no-data py-4 my-4">
+          <h2 class="text-center m-auto my-4">" No result found for the keyword you inserted "</h2>
       </div>
     </div>
     <div class="w-100">

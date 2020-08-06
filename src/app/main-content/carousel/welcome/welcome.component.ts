@@ -44,13 +44,13 @@ export class WelcomeComponent implements OnInit {
 
   goPrivate(){
     if(!this.isPrivate){
-      this.httpService.getPrivate().subscribe(
+      this.httpService.getMyUploads().subscribe(
         (data)=>{
           this.albumService.putData(data);
           this.isPrivate = !this.isPrivate;
-          this.alertService.put({title:'Private mode',message:'Now viewing private files!'})
+          this.alertService.put({title:'Private mode',message:'Now viewing my uploads !'})
         },
-        err=>this.alertService.put({title:'Error',message:'Unable to go private. Try Again !'})
+        err=>this.alertService.put({title:'Error',message:'Unable to my uploads. Try Again !'})
       )
     } else {
       this.httpService.getMasonryImages().subscribe(

@@ -57,7 +57,23 @@ export class HttpService {
     return this.http.get(`${environment.apiHostName}/heartimage/?userid=${userid}&imageid=${imageid}`);
   }
 
-  getPrivate(){
-    return this.http.get(`${environment.apiHostName}/private`);
+  getMyUploads(){
+    return this.http.get(`${environment.apiHostName}/myuploads`);
+  }
+
+  getMyPrivate(){
+    return this.http.get(`${environment.apiHostName}/myPrivate`);
+  }
+
+  getMyLiked(){
+    return this.http.get(`${environment.apiHostName}/myliked`);
+  }
+
+  getMyFavorite(){
+    return this.http.get(`${environment.apiHostName}/myfavorite`);
+  }
+
+  getMyTags(){
+    return this.http.get(`${environment.apiHostName}/mytags`);
   }
 }

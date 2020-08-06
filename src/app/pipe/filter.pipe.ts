@@ -8,7 +8,9 @@ export class FilterPipe implements PipeTransform {
 
   transform(value: any, searchkey?:string): any {
     return _.filter(value,(o)=>{
-      return o.title.toLowerCase().includes(searchkey.toLowerCase()) || o.description.toLowerCase().includes(searchkey.toLowerCase()) || o.author.toLowerCase().includes(searchkey.toLowerCase())
+      return  o.title.toLowerCase().includes(searchkey.toLowerCase()) 
+              || o.description.toLowerCase().includes(searchkey.toLowerCase()) 
+              || o.author.toLowerCase().includes(searchkey.toLowerCase());
     })
   }
 

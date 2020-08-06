@@ -5,6 +5,26 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  .chip {
+    cursor: pointer;
+    display: inline-block;
+    padding: 2px 16px;
+    margin: 2px 5px;
+    font-size: 16px;
+    line-height: 30px;
+    border-radius: 20px;
+    color: #777777;
+    background-color: whitesmoke;
+    transition: all .5s;
+    &:hover{
+      color: whitesmoke;;
+      background-color: #777777;
+    }
+  }
+  .chips.active{
+    color: whitesmoke;;
+    background-color: #777777;
+  }
 }
 
 .form-control{
@@ -38,6 +58,7 @@
     font-family: 'Cookie';
     font-weight: 500;
     letter-spacing: 2px;
+    color: #777777;
   }
 }
 .btn{
