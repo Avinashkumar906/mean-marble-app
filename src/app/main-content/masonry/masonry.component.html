@@ -10,13 +10,15 @@
     <div class="w-100">
         <div class="px-4">
             <div class="form-group">
-                <input (keyup.enter)="search($event)" class="form-control" type="text" name="Search" placeholder="Search" />
+                <input (keyup.enter)="search($event)" class="form-control" type="text" name="Search" placeholder="Type and Hit Enter :)" />
             </div>
-            <div class="py-1">
-                <span class="chip" (click)="getTagged()">#Tagged</span>
-                <span class="chip" (click)="getLiked()">#Liked</span>
-                <span class="chip" (click)="getFavorite()">#Favorite</span>
-                <span class="chip" (click)="getPrivate()">#Private</span>
+            <div class="py-1 text-center">
+                <span class="chip" [ngClass]="{'active':selectedChip == 'upload'}" (click)="getMyUploads()">#My Uploads</span>
+                <span class="chip" [ngClass]="{'active':selectedChip == 'tag'}" (click)="getTagged()">#Tagged</span>
+                <span class="chip" [ngClass]="{'active':selectedChip == 'private'}" (click)="getPrivate()">#Private</span>
+                <span class="chip" [ngClass]="{'active':selectedChip == 'like'}" (click)="getLiked()">#Liked</span>
+                <span class="chip" [ngClass]="{'active':selectedChip == 'favorite'}" (click)="getFavorite()">#Favorite</span>
+                <span class="chip" [ngClass]="{'active':selectedChip == 'all'}" (click)="clear()">#Public</span>
             </div>
         </div>
     </div>

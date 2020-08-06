@@ -19,6 +19,7 @@ export class MasonryComponent implements OnInit,OnDestroy {
   images:Array<{}> = this.albumService.getData();
   currentpage:number = 0;
   numberOfItems:number = 12;
+  selectedChip:string = 'all';
   searchKey:string = '';
   subscription = new Subscription;
   user:any = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
@@ -43,40 +44,60 @@ export class MasonryComponent implements OnInit,OnDestroy {
   }
 
   getTagged(){
+    this.selectedChip = 'tag';
     this.httpService.getMyTags().subscribe(
       data=>{
         this.albumService.putData(data)
-        this.alertService.put({title:"Liked by me",message:"Viewing all photos tagged to me !"})
+      },
+      err=>this.alertService.put({title:"Error ",message:"Unable to fetch data. Try again"})
+    )
+  }
+
+  getMyUploads(){
+    this.selectedChip = 'upload';
+    this.httpService.getMyUploads().subscribe(
+      data=>{
+        this.albumService.putData(data)
+      },
+      err=>this.alertService.put({title:"Error ",message:"Unable to fetch data. Try again"})
+    )
+  }
+
+  clear(){
+    this.selectedChip = 'all';
+    this.httpService.getMasonryImages().subscribe(
+      data=>{
+        this.albumService.putData(data)
       },
       err=>this.alertService.put({title:"Error ",message:"Unable to fetch data. Try again"})
     )
   }
 
   getLiked(){
+    this.selectedChip = 'like';
     this.httpService.getMyLiked().subscribe(
       data=>{
         this.albumService.putData(data)
-        this.alertService.put({title:"Liked by me",message:"Viewing all photos liked by me !"})
       },
       err=>this.alertService.put({title:"Error ",message:"Unable to fetch data. Try again"})
     )
   }
 
   getPrivate(){
+    this.selectedChip = 'private';
     this.httpService.getMyPrivate().subscribe(
       data=>{
         this.albumService.putData(data)
-        this.alertService.put({title:"Liked by me",message:"Viewing my private photos !"})
       },
       err=>this.alertService.put({title:"Error ",message:"Unable to fetch data. Try again"})
     )
   }
 
   getFavorite(){
+    this.selectedChip = 'favorite';
     this.httpService.getMyFavorite().subscribe(
       data=>{
         this.albumService.putData(data)
-        this.alertService.put({title:"Liked by me",message:"Viewing all my favorite pics !"})
       },
       err=>this.alertService.put({title:"Error ",message:"Unable to fetch data. Try again"})
     )

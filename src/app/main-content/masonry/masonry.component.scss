@@ -5,7 +5,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  .chip {
+  span.chip {
     cursor: pointer;
     display: inline-block;
     padding: 2px 16px;
@@ -17,13 +17,13 @@
     background-color: whitesmoke;
     transition: all .5s;
     &:hover{
-      color: whitesmoke;;
+      color: whitesmoke;
       background-color: #777777;
     }
   }
-  .chips.active{
-    color: whitesmoke;;
-    background-color: #777777;
+  span.chip.active{
+    color: whitesmoke!important;
+    background-color: #777777!important;
   }
 }
 
