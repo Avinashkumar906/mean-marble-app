@@ -103,10 +103,6 @@ export class MasonryComponent implements OnInit,OnDestroy {
     )
   }
 
-  search(event){
-    this.searchKey = event.target.value
-  }
-
   openLightbox(id: number): void {
     let imgArray = [];
     let tempArray= _.filter(this.images,(o)=>{

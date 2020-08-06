@@ -10,7 +10,7 @@
     <div class="w-100">
         <div class="px-4">
             <div class="form-group">
-                <input (keyup.enter)="search($event)" class="form-control" type="text" name="Search" placeholder="Type and Hit Enter :)" />
+                <input class="form-control" type="text" placeholder="Search by keyword)" [(ngModel)]="searchKey"/>
             </div>
             <div class="py-1 text-center">
                 <span class="chip" [ngClass]="{'active':selectedChip == 'upload'}" (click)="getMyUploads()">#My Uploads</span>
@@ -29,7 +29,7 @@
                   <img (click)="openLightbox(image._id)" class="img-fluid" [src]="image.url | previewUrl:'src'" [alt]="image.alt">
                   <div class="header">
                       <div class="date">
-                            <p class="p">{{ image.day }} <sup>Th</sup> {{ image.month + ', ' + image.year }}</p>
+                            <p class="p">{{ image.day }}<sup>Th</sup>{{ image.month + ', ' + image.year }}</p>
                       </div>
                       <div class="edit" *ngIf="user && (user.role == 'admin' || image.profile == user._id)">
                             <p class="p d-inline" (click)="delete(image)">Delete</p>
@@ -55,8 +55,8 @@
               </div>
           </div>
       </div>
-      <div *ngIf="(images | filter:searchKey).length == 0"  class="no-data py-4 my-4">
-          <h2 class="text-center m-auto my-4">" No result found for the keyword you inserted "</h2>
+      <div *ngIf="(images | filter:searchKey).length == 0"  class="no-data p-4 my-4">
+          <h2 class="text-center m-auto my-5">"No result found for selected filter/Keyword"</h2>
       </div>
     </div>
     <div class="w-100">
