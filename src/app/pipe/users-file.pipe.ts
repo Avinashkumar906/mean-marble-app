@@ -11,8 +11,8 @@ export class UsersFilePipe implements PipeTransform {
   ){}
   transform(value: any, ...args: any[]): any {
     if(this.authService.isAuthenticated()){
-      let userId = JSON.parse(localStorage.getItem('user'))._id;
-      return _.find(value,(id:String)=>id === userId ? true : false)
+      const { _id,email} = JSON.parse(localStorage.getItem('user'));
+      return _.find(value,(id:String)=>id === _id || id === email ? true : false)
     } else{
       return false;
     }

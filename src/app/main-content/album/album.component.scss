@@ -5,6 +5,27 @@ $black: #000;
 .container-fluid{
   padding: 4rem 0;
   min-height: 105vh;
+  background-color: white;
+  span.chip {
+    cursor: pointer;
+    display: inline-block;
+    padding: 2px 16px;
+    margin: 2px 5px;
+    font-size: 16px;
+    line-height: 30px;
+    border-radius: 20px;
+    color: #777777;
+    background-color: rgb(222 222 222);
+    transition: all .5s;
+    &:hover{
+      color: whitesmoke;
+      background-color: #777777;
+    }
+  }
+  span.chip.active{
+    color: whitesmoke!important;
+    background-color: #777777!important;
+  }
 }
 .btn{
   border: 1px solid #dee2e6;

@@ -10,15 +10,15 @@
     <div class="w-100">
         <div class="px-4">
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="Search by keyword)" [(ngModel)]="searchKey"/>
+                <input class="form-control" type="text" placeholder="Search by keyword :)" [(ngModel)]="searchKey"/>
             </div>
             <div class="py-1 text-center">
+                <span class="chip" [ngClass]="{'active':selectedChip == 'all'}" (click)="clear()">#Public</span>
                 <span class="chip" [ngClass]="{'active':selectedChip == 'upload'}" (click)="getMyUploads()">#My Uploads</span>
                 <span class="chip" [ngClass]="{'active':selectedChip == 'tag'}" (click)="getTagged()">#Tagged</span>
                 <span class="chip" [ngClass]="{'active':selectedChip == 'private'}" (click)="getPrivate()">#Private</span>
                 <span class="chip" [ngClass]="{'active':selectedChip == 'like'}" (click)="getLiked()">#Liked</span>
                 <span class="chip" [ngClass]="{'active':selectedChip == 'favorite'}" (click)="getFavorite()">#Favorite</span>
-                <span class="chip" [ngClass]="{'active':selectedChip == 'all'}" (click)="clear()">#Public</span>
             </div>
         </div>
     </div>
@@ -29,7 +29,7 @@
                   <img (click)="openLightbox(image._id)" class="img-fluid" [src]="image.url | previewUrl:'src'" [alt]="image.alt">
                   <div class="header">
                       <div class="date">
-                            <p class="p">{{ image.day }}<sup>Th</sup>{{ image.month + ', ' + image.year }}</p>
+                            <p class="p">{{ image.day }} <sup>Th</sup>{{ image.month + ', ' + image.year }}</p>
                       </div>
                       <div class="edit" *ngIf="user && (user.role == 'admin' || image.profile == user._id)">
                             <p class="p d-inline" (click)="delete(image)">Delete</p>
@@ -46,10 +46,10 @@
                           <p class="text">{{image.description}}</p>
                           <div class="icon-container">
                             <span (click)="heart(image._id)" [ngClass]="{'active': image.heart | usersFile}">{{image.heart.length}} <i class="fas fa-heart"></i></span>
-                            <span (click)="downloadUrl(image.url)"><i class="fas fa-download"></i></span>
                             <span (click)="like(image._id)" [ngClass]="{'active': image.likes | usersFile}">{{image.likes.length}} <i class="fas fa-thumbs-up"></i></span>
+                            <span (click)="tag(image._id)" [ngClass]="{'active': image.tags | usersFile}">{{image.tags.length}} <i class="fas fa-tags"></i></span>
                           </div>
-                          <a class="button py-1">Comments</a>
+                          <a class="button py-1" (click)="downloadUrl(image.url)"><i class="fas fa-download"></i> Download</a>
                       </div>
                   </div>
               </div>

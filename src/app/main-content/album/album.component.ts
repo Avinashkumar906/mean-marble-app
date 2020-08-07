@@ -13,6 +13,7 @@ export class AlbumComponent implements OnInit,OnDestroy {
 
   albums:Array<any> = _.cloneDeep(this.albumService.getData())
   unique:Array<any>;
+  selectedChip:string = 'month';
   subscription = new Subscription
   owlOption =
       {
@@ -41,18 +42,19 @@ export class AlbumComponent implements OnInit,OnDestroy {
     ) { }
 
   ngOnInit() {
-    this.unique = _.uniqBy(this.albums,'month');
+    this.unique = _.uniqBy(this.albums,this.selectedChip);
     this.subscription = this.albumService.changeDetection.subscribe(
       (data:Array<any>)=>{
         this.albums = _.cloneDeep(data);
-        this.unique = _.uniqBy(this.albums,'month');
+        this.unique = _.uniqBy(this.albums,this.selectedChip);
       },
       error=>console.log(error)
     )
   }
 
-  openLightbox(filter){
-    let temp = _.filter(this.albums,{'month':filter})
+  openLightbox(item){
+    const filter = item[this.selectedChip.toString()]
+    let temp = _.filter(this.albums,{[this.selectedChip.toString()]:filter})
     let lightboxArray = temp.map((item:{url,description})=>{
         return new Object({
           src : item.url,
@@ -63,8 +65,9 @@ export class AlbumComponent implements OnInit,OnDestroy {
     this.lightbox.open(lightboxArray, 0, { wrapAround: true, alwaysShowNavOnTouchDevices:true, centerVertically:true, disableScrolling:true });
   }
 
-  getSubstring(month:string){
-    return month.substring(0,3)
+  groupBy(key:string){
+    this.selectedChip = key;
+    this.unique = _.uniqBy(this.albums,key);
   }
 
   ngOnDestroy(){

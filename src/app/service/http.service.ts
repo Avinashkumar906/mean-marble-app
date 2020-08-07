@@ -57,6 +57,11 @@ export class HttpService {
     return this.http.get(`${environment.apiHostName}/heartimage/?userid=${userid}&imageid=${imageid}`);
   }
 
+  tagImage(email,imageid){
+    // Tag Untag Api
+    return this.http.get(`${environment.apiHostName}/tagimage/?email=${email}&imageid=${imageid}`);
+  }
+
   getMyUploads(){
     return this.http.get(`${environment.apiHostName}/myuploads`);
   }
